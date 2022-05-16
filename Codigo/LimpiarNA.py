@@ -1,8 +1,7 @@
 import pandas as pd
 
-alcaldia= "" +
 
-df = pd.read_csv("..\DatasetOriginal\VenustianoCarranzaUTF.csv")
+df = pd.read_csv("..\..\..\DataSet\DatasetLimpia\VenustianoCarranzaLimpia.csv")
 
 
 
@@ -13,4 +12,3 @@ dfL.drop(dfL[dfL['longitud'] == 'NA'].index, inplace = True)
 dfL = dfL[dfL['longitud'].notna()]
 
 dfL.to_csv('..\DatasetLimpia\VenustianoCarranzaLimpia.csv', index=False)
-
