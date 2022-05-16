@@ -4,7 +4,10 @@ import pandas as pd
 #Limpieza de columnas y datos vacios
 
 
-df = pd.read_csv("..\..\..\DataSet\BaseCompletaUTF.csv")   #Se carga el archivo CSV como un dataframe
+df = pd.read_csv("..\..\..\DataSet\DataBase.csv" )   #Se carga el archivo CSV como un dataframe
+
+print(df.columns)
+
 
 dfL = df.drop([
             'tempo', 
@@ -20,14 +23,17 @@ dfL.drop(dfL[dfL['longitud'] == 'NA'].index, inplace = True)  #se borran los com
 dfL = dfL[df['longitud'].notna()] #se eliminan las filas con el espacio en blnaco
 
 
-
 #Separacion de fecha en dia y hora
 
-dfT = dfL["fecha_hechos"].str.split('[/ ]', expand=True) #Se divide la cadena de texto de "fecha_hechos" 
+dfT = dfL["fecha_hechos"].str.split('[- ]', expand=True) #Se divide la cadena de texto de "fecha_hechos" 
 
-dfT = dfT.rename(columns={0 :'dia_hechos', 3 :'hora_hechos'}) #Se cambia el numero que tiene de nombre por el nombre correcto
 
-dfT = dfT.drop([1,2] , axis=1)  #Se eliminan la columnas de datos de la fecha que no necesitamos
+dfT = dfT.rename(columns={1 :'dia_hechos', 3 :'hora_hechos'}) #Se cambia el numero que tiene de nombre por el nombre correcto
+
+
+dfT = dfT.drop([0,2] , axis=1)  #Se eliminan la columnas de datos de la fecha que no necesitamos
+
+
 
 
 dfS= pd.concat([dfL ,dfT], axis=1) #Se agreganlas dos columnas a la bae completa
@@ -37,6 +43,7 @@ dfS = dfS.drop(['fecha_hechos'] , axis=1)   #se elimina la columna de 'fecha_heh
 dfS = dfS[['dia_hechos', 'mes_hechos', 'ao_hechos', 'hora_hechos', 'delito', 'fiscalia', 'categoria_delito',
            'calle_hechos', 'calle_hechos2', 'colonia_hechos', 'alcaldia_hechos', 'longitud', 'latitud']]#Se hace un acomodo de las columnas por dia/mes/año
 
+print(dfS)
 
 
 #Filtar alcaldias de estuido
@@ -83,5 +90,10 @@ dfFinal = dfFinal[dfFinal['ao_hechos'].notna()] #se eliminan las filas con el es
 
 dfFinal.to_csv('..\..\..\DataSet\FechaSeparada\BaseCompletaLimpia.csv', index=False) #guaramos el dataframe final en un CSV
 
-print(df['ao_hechos'].value_counts(dropna=False).head(10))
+print(df.info())
 
+print(dfFinal.info())
+
+
+print(dfFinal['ao_hechos'].value_counts(dropna=False).head(10))
+print(df['ao_hechos'].value_counts(dropna=False).head(10))
