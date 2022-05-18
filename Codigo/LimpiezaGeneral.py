@@ -92,7 +92,7 @@ dfFinal.to_csv('..\..\..\DataSet\FechaSeparada\BaseCompletaLimpia.csv', index=Fa
 
 print(df.info())
 
-print(dfFinal.info())
+print(dfFinal.columns)
 
 
 print(dfFinal['ao_hechos'].value_counts(dropna=False).head(10))
