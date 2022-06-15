@@ -46,6 +46,16 @@ dfS = dfS[['dia_hechos', 'mes_hechos', 'ao_hechos', 'hora_hechos', 'delito', 'fi
 print(dfS)
 
 
+dfS.drop(dfS[dfS['ao_hechos'] <= 2015 ].index, inplace = True)  
+
+dfS = dfS[dfS['ao_hechos'].notna()] #se eliminan las filas con el espacio en blnaco
+
+dfS.drop(dfS[dfS['ao_hechos'] >= 2022 ].index, inplace = True)  
+
+dfS = dfS[dfS['ao_hechos'].notna()] #se eliminan las filas con el espacio en blnaco
+
+
+
 #Filtar alcaldias de estuido
 
 dfA = dfS.copy()
@@ -76,8 +86,17 @@ dfIZTACALCO.drop(dfIZTACALCO [dfIZTACALCO ['alcaldia_hechos'] != 'IZTACALCO'].in
 dfIZTACALCO = dfIZTACALCO [dfIZTACALCO ['alcaldia_hechos'].notna()] #se eliminan las filas con el espacio en blnaco
 
 
+dfIZTAPALAPA.to_csv('..\..\..\DataSet\FechaSeparada\dfIZTAPALAPA.csv', index=False)
+dfGUSTAVOAMADER.to_csv('..\..\..\DataSet\FechaSeparada\dfGUSTAVOAMADER.csv', index=False)
+dfAZCAPOTZALCO.to_csv('..\..\..\DataSet\FechaSeparada\dfAZCAPOTZALCO.csv', index=False)
+dfVENUSTIANOCARRANZA.to_csv('..\..\..\DataSet\FechaSeparada\dfVENUSTIANOCARRANZA.csv', index=False)
+dfCUAUHTEMOC.to_csv('..\..\..\DataSet\FechaSeparada\dfCUAUHTEMOC.csv', index=False)
+dfIZTACALCO.to_csv('..\..\..\DataSet\FechaSeparada\dfIZTACALCO.csv', index=False)
+
+
 dfFinal = pd.concat([dfIZTAPALAPA,dfGUSTAVOAMADER,dfAZCAPOTZALCO,dfVENUSTIANOCARRANZA,dfCUAUHTEMOC,dfIZTACALCO]) #Concatenamos todas las bases de la alcaldia en una sola
 
+"""
 
 dfFinal.drop(dfFinal[dfFinal['ao_hechos'] <= 2015 ].index, inplace = True)  
 
@@ -87,12 +106,16 @@ dfFinal.drop(dfFinal[dfFinal['ao_hechos'] >= 2022 ].index, inplace = True)
 
 dfFinal = dfFinal[dfFinal['ao_hechos'].notna()] #se eliminan las filas con el espacio en blnaco
 
+"""
+
 
 dfFinal.to_csv('..\..\..\DataSet\FechaSeparada\BaseCompletaLimpia.csv', index=False) #guaramos el dataframe final en un CSV
 
-print(df.info())
+
 
 print(dfFinal.columns)
+
+
 
 
 print(dfFinal['ao_hechos'].value_counts(dropna=False).head(10))
