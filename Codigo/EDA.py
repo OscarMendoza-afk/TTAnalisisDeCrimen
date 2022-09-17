@@ -1,9 +1,8 @@
-import numpy as np
 import pandas as pd
 import pandas_profiling 
 from pandas_profiling import ProfileReport
 
-df = pd.read_csv(r"C:\Users\ozkr_\Documents\TT\DataSet\BaseCompletaLimpia.csv")
+df = pd.read_csv(r"D:\Windows11Save2\Docs\TT\DataSet\BaseCompletaLimpia.csv")
 
 print(df.describe)
 
