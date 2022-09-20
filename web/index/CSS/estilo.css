@@ -34,3 +34,6 @@ display: inline-block;
 margin: auto;
 }
 
+.text-align-justify{
+  text-align:justify;
+}
