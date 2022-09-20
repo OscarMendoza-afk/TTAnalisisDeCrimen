@@ -62,13 +62,13 @@
             <div class="row align-items-start">
               <div class="col">
                 <div class="figure">
-                    <p><img id ="foto" width="500" height="250" HSPACE="0" title="" src="https://github.com/OscarMendoza-afk/TTAnalisisDeCrimen/blob/main/web/index/Sources/Detecccion.png?raw=true"/>
+                    <p><img id ="foto" width="500" height="250" HSPACE="0" title="" src="https://github.com/OscarMendoza-afk/TTAnalisisDeCrimen/blob/main/web/index/Sources/Analisis.png?raw=true"/>
                   </div>
               </div>
               <div class="col">
                 <div class="dropdown-center">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Tipo de vizualización
+                      Alcaldia
                     </button>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="#">Action</a></li>
@@ -93,21 +93,58 @@
                   <marquee class="marq"
                     vspace=10>
                     </marquee>
-                  <div class="dropdown-center">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Año
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Action two</a></li>
-                      <li><a class="dropdown-item" href="#">Action three</a></li>
-                    </ul>
-                  </div>
+
+                    <div class="dropdown-center">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Cargar Capa
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Action two</a></li>
+                        <li><a class="dropdown-item" href="#">Action three</a></li>
+                      </ul>
+                    </div>
 
                   <marquee class="marq"
                     vspace=10>
                     </marquee>
-                  <button type="button" class="btn btn-secondary">Mostrar series de tiempo</button>
+
+                  <div class="dropdown-center">
+
+                    <label for="customRange2" class="form-label">Elegir año</label>
+                    <input type="range" class="form-range" min="0" max="4" id="customRange2">
+                  </div>
+
+                  <marquee class="marq"
+                  vspace=15>
+                  </marquee>
+
+                  <div class="col-sm">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Hot spot 1
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        hot spot 2
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Mapa calor
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        Coropletas
+                      </label>
+                    </div>
+                  </div>
 
               </div>
             </div>
