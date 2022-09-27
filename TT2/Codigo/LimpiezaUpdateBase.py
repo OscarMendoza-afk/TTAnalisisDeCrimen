@@ -21,9 +21,9 @@ df = df.drop([
 #print(df.columns)
 
 
-df.drop(df[df['longitud'] == 'NA'].index, inplace = True)  #se borran los compos "NA" de la columna longitud pero se deja el espacio en blnaco
+#df.drop(df[df['longitud'] == 'NA'].index, inplace = True)  #se borran los compos "NA" de la columna longitud pero se deja el espacio en blnaco
 
-df = df[df['longitud'].notna()] #se eliminan las filas con el espacio en blnaco
+#df = df[df['longitud'].notna()] #se eliminan las filas con el espacio en blnaco
 
 #print(df.describe)
 
@@ -44,22 +44,32 @@ dfS= pd.concat([df ,dfT], axis=1) #Se agreganlas dos columnas a la bae completa
 
 dfS = dfS.drop(['FechaHecho'] , axis=1)   #se elimina la columna de 'fecha_hehcos pues ya no es relevante
 
-dfS = dfS[['dia_hechos', 'Mes_hecho', 'Año_hecho', 'HoraHecho', 'Delito', 'CalidadJuridica', 'Categoria', 'ColoniaHechos', 'AlcaldiaHechos', 'longitud', 'latitud']]#Se hace un acomodo de las columnas por dia/mes/año
+dfS = dfS[['dia_hechos', 
+           'Mes_hecho', 
+           'Año_hecho', 
+           'HoraHecho', 
+           'Delito', 
+           'CalidadJuridica', 
+           'Categoria', 
+           'ColoniaHechos', 
+           'AlcaldiaHechos', 
+           'longitud', 
+           'latitud']]#Se hace un acomodo de las columnas por dia/mes/año
 
 
 #Filtrar años de estudio
 
 dfS.drop(dfS[dfS['Año_hecho'] <= 2015 ].index, inplace = True)  
 
-dfS = dfS[dfS['Año_hecho'].notna()] #se eliminan las filas con el espacio en blnaco
+#dfS = dfS[dfS['Año_hecho'].notna()] #se eliminan las filas con el espacio en blnaco
 
-dfS.drop(dfS[dfS['Año_hecho'] >= 2022 ].index, inplace = True)  
+dfS.drop(dfS[dfS['Año_hecho'] >= 2023 ].index, inplace = True)  
 
-dfS = dfS[dfS['Año_hecho'].notna()] #se eliminan las filas con el espacio en blnaco
+#dfS = dfS[dfS['Año_hecho'].notna()] #se eliminan las filas con el espacio en blnaco
 
 print(dfS.columns)
 
-dfS.to_csv("D:\TT2\Data\BaseCompletaLimpia.csv", index=False) #guaramos el dataframe final en un CSV
+dfS.to_csv("D:\TT2\Data\BaseLimpiaUpdate.csv", index=False) #guaramos el dataframe final en un CSV
 
 
 #EDA
@@ -69,6 +79,6 @@ print(dfS.describe)
 
 print(dfS.columns)
 
-#profile = ProfileReport(dfS, title="EDA Analisis de Crimen", explorative=True)
+profile = ProfileReport(dfS, title="EDA Analisis de Crimen", explorative=True)
 
-#profile.to_file("ReporteEDAUpdate.html")
+profile.to_file("ReporteEDAUpdate.html")

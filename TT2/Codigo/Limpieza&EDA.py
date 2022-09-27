@@ -61,7 +61,7 @@ dfS = dfS[dfS['ao_hechos'].notna()] #se eliminan las filas con el espacio en bln
 
 print(dfS.columns)
 
-dfS.to_csv("D:\TT2\Data\BaseLimpiaUpdate.csv", index=False) #guaramos el dataframe final en un CSV
+dfS.to_csv("D:\TT2\Data\BaseCompletaLimpia.csv", index=False) #guaramos el dataframe final en un CSV
 
 
 #EDA
