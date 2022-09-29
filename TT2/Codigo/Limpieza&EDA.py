@@ -35,13 +35,14 @@ dfTime = df["fecha_hechos"].str.split('[/ ]', expand=True) #Se divide la cadena 
 
 
 
-dfTime = dfTime.rename(columns={1 :'dia_hechos', 3 :'hora_hechos'}) #Se cambia el numero que tiene de nombre por el nombre correcto
+dfTime = dfTime.rename(columns={0 :'dia_hechos', 3 :'hora_hechos'}) #Se cambia el numero que tiene de nombre por el nombre correcto
+
+#dfTimeF = dfTime["fehca"] = dfTime[]  
+
+dfTimeD = dfTime.drop([1,2] , axis=1)  #Se eliminan la columnas de datos de la fecha que no necesitamos
 
 
-dfTime = dfTime.drop([0,2] , axis=1)  #Se eliminan la columnas de datos de la fecha que no necesitamos
-
-
-dfC= pd.concat([df ,dfTime], axis=1) #Se agreganlas dos columnas a la bae completa
+dfC= pd.concat([df ,dfTimeD], axis=1) #Se agreganlas dos columnas a la bae completa
 
 dfC = dfC.drop(['fecha_hechos'] , axis=1)   #se elimina la columna de 'fecha_hehcos pues ya no es relevante
 
