@@ -31,47 +31,47 @@ df = df[df['longitud'].notna()] #se eliminan las filas con el espacio en blnaco
 
 #Separacion de fecha en dia y hora
 
-dfT = df["fecha_hechos"].str.split('[/ ]', expand=True) #Se divide la cadena de texto de "fecha_hechos" 
+dfTime = df["fecha_hechos"].str.split('[/ ]', expand=True) #Se divide la cadena de texto de "fecha_hechos" 
 
 
 
-dfT = dfT.rename(columns={1 :'dia_hechos', 3 :'hora_hechos'}) #Se cambia el numero que tiene de nombre por el nombre correcto
+dfTime = dfTime.rename(columns={1 :'dia_hechos', 3 :'hora_hechos'}) #Se cambia el numero que tiene de nombre por el nombre correcto
 
 
-dfT = dfT.drop([0,2] , axis=1)  #Se eliminan la columnas de datos de la fecha que no necesitamos
+dfTime = dfTime.drop([0,2] , axis=1)  #Se eliminan la columnas de datos de la fecha que no necesitamos
 
 
-dfS= pd.concat([df ,dfT], axis=1) #Se agreganlas dos columnas a la bae completa
+dfC= pd.concat([df ,dfTime], axis=1) #Se agreganlas dos columnas a la bae completa
 
-dfS = dfS.drop(['fecha_hechos'] , axis=1)   #se elimina la columna de 'fecha_hehcos pues ya no es relevante
+dfC = dfC.drop(['fecha_hechos'] , axis=1)   #se elimina la columna de 'fecha_hehcos pues ya no es relevante
 
-dfS = dfS[['dia_hechos', 'mes_hechos', 'ao_hechos', 'hora_hechos', 'delito', 'fiscalia', 'categoria_delito',
+dfC = dfC[['dia_hechos', 'mes_hechos', 'ao_hechos', 'hora_hechos', 'delito', 'fiscalia', 'categoria_delito',
            'calle_hechos', 'calle_hechos2', 'colonia_hechos', 'alcaldia_hechos', 'longitud', 'latitud']]#Se hace un acomodo de las columnas por dia/mes/año
 
 
 #Filtrar años de estudio
 
-dfS.drop(dfS[dfS['ao_hechos'] <= 2015 ].index, inplace = True)  
+dfC.drop(dfC[dfC['ao_hechos'] <= 2015 ].index, inplace = True)  
 
-dfS = dfS[dfS['ao_hechos'].notna()] #se eliminan las filas con el espacio en blnaco
+dfC = dfC[dfC['ao_hechos'].notna()] #se eliminan las filas con el espacio en blnaco
 
-dfS.drop(dfS[dfS['ao_hechos'] >= 2022 ].index, inplace = True)  
+dfC.drop(dfC[dfC['ao_hechos'] >= 2022 ].index, inplace = True)  
 
-dfS = dfS[dfS['ao_hechos'].notna()] #se eliminan las filas con el espacio en blnaco
+dfC = dfC[dfC['ao_hechos'].notna()] #se eliminan las filas con el espacio en blnaco
 
-print(dfS.columns)
+print(dfC.columns)
 
-dfS.to_csv("D:\TT2\Data\BaseCompletaLimpia.csv", index=False) #guaramos el dataframe final en un CSV
+dfC.to_csv("D:\TT2\Data\BaseCompletaLimpia.csv", index=False) #guaramos el dataframe final en un CSV
 
 
 #EDA
 
 
-print(dfS.describe)
+print(dfC.describe)
 
-print(dfS.columns)
+print(dfC.columns)
 
-#profile = ProfileReport(dfS, title="EDA Analisis de Crimen", explorative=True)
+profile = ProfileReport(dfC, title="EDA Analisis de Crimen", explorative=True)
 
-#profile.to_file("ReporteEDA.html")
+profile.to_file("ReporteEDA.html")
 

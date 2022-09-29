@@ -5,12 +5,12 @@ from pandas_profiling import ProfileReport
 #Limpieza de columnas y datos vacios
 
 
-df = pd.read_csv(r"D:\TT2\Data\UpdateCrimenes.csv" )   #Se carga el archivo CSV como un dataframe
+dfU = pd.read_csv(r"D:\TT2\Data\UpdateCrimenes.csv" )   #Se carga el archivo CSV como un dataframe
 
-print(df.columns)
+print(dfU.columns)
 
 
-df = df.drop([
+dfU = dfU.drop([
              
             'Año_inicio', 
             'Mes_inicio', 
@@ -30,7 +30,7 @@ df = df.drop([
 
 #Separacion de fecha en dia y hora
 
-dfT = df["FechaHecho"].str.split('[/ ]', expand=True) #Se divide la cadena de texto de "fecha_hechos" 
+dfT = dfU["FechaHecho"].str.split('[/ ]', expand=True) #Se divide la cadena de texto de "fecha_hechos" 
 
 
 
@@ -40,19 +40,25 @@ dfT = dfT.rename(columns={1 :'dia_hechos', 3 :'hora_hechos'}) #Se cambia el nume
 dfT = dfT.drop([0,2] , axis=1)  #Se eliminan la columnas de datos de la fecha que no necesitamos
 
 
-dfS= pd.concat([df ,dfT], axis=1) #Se agreganlas dos columnas a la bae completa
+dfS= pd.concat([dfU ,dfT], axis=1) #Se agreganlas dos columnas a la bae completa
 
-dfS = dfS.drop(['FechaHecho'] , axis=1)   #se elimina la columna de 'fecha_hehcos pues ya no es relevante
+#dfS = dfS.drop(['FechaHecho'] , axis=1)   #se elimina la columna de 'fecha_hehcos pues ya no es relevante
 
-dfS = dfS[['dia_hechos', 
+dfS = dfS[[
+           'idCarpeta',
+           'dia_hechos', 
            'Mes_hecho', 
-           'Año_hecho', 
+           'Año_hecho',
+           'FechaHecho',
            'HoraHecho', 
            'Delito', 
            'CalidadJuridica', 
            'Categoria', 
            'ColoniaHechos', 
-           'AlcaldiaHechos', 
+           'AlcaldiaHechos',
+           'Sexo',
+           'Edad',
+           'TipoPersona',
            'longitud', 
            'latitud']]#Se hace un acomodo de las columnas por dia/mes/año
 
@@ -79,6 +85,6 @@ print(dfS.describe)
 
 print(dfS.columns)
 
-profile = ProfileReport(dfS, title="EDA Analisis de Crimen", explorative=True)
+profile = ProfileReport(dfS, title="EDA Update", explorative=True)
 
 profile.to_file("ReporteEDAUpdate.html")
