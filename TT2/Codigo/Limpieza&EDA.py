@@ -37,16 +37,29 @@ dfTime = df["fecha_hechos"].str.split('[/ ]', expand=True) #Se divide la cadena 
 
 dfTime = dfTime.rename(columns={0 :'dia_hechos', 3 :'hora_hechos'}) #Se cambia el numero que tiene de nombre por el nombre correcto
 
-#dfTimeF = dfTime["fehca"] = dfTime[]  
+dfTimeF = pd.DataFrame(columns=['dia','hora','fecha'])
 
-dfTimeD = dfTime.drop([1,2] , axis=1)  #Se eliminan la columnas de datos de la fecha que no necesitamos
+dfTimeF["fecha"] = dfTime["dia_hechos"] + "/" +  dfTime[1] + "/" + dfTime[2] 
+#dfTimeF = dfTimeF.rename(columns={0 :'fecha'})
+print(dfTimeF.head)
+
+dfTimeF["dia"] = dfTime["dia_hechos"]
+#dfTimeD = dfTimeD.rename(columns={0 :'dia'})
 
 
-dfC= pd.concat([df ,dfTimeD], axis=1) #Se agreganlas dos columnas a la bae completa
+dfTimeF["hora"] = dfTime["hora_hechos"]
+#dfTimeH = dfTimeH.rename(columns={0 :'hora'})
+print(dfTimeF.head)
+
+
+
+dfC= pd.concat([df, dfTimeF], axis=1) #Se agreganlas dos columnas a la bae completa
+print(dfC.columns)
+
 
 dfC = dfC.drop(['fecha_hechos'] , axis=1)   #se elimina la columna de 'fecha_hehcos pues ya no es relevante
 
-dfC = dfC[['dia_hechos', 'mes_hechos', 'ao_hechos', 'hora_hechos', 'delito', 'fiscalia', 'categoria_delito',
+dfC = dfC[['dia', 'mes_hechos', 'ao_hechos', 'fecha', 'hora', 'delito', 'fiscalia', 'categoria_delito',
            'calle_hechos', 'calle_hechos2', 'colonia_hechos', 'alcaldia_hechos', 'longitud', 'latitud']]#Se hace un acomodo de las columnas por dia/mes/año
 
 
