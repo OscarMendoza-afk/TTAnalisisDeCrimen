@@ -75,13 +75,12 @@ dfS.drop(dfS[dfS['Año_hecho'] >= 2023 ].index, inplace = True)
 
 #print(dfS.columns)
 
-dfS.to_csv("D:\TT2\Data\BaseLimpiaUpdate.csv", index=False) #guaramos el dataframe final en un CSV
-
 
 dfS = dfS.rename(columns={'dia_hechos' :'Dia', 'Mes_hecho' :'Mes', 'Año_hecho' : 'Año' , 'FechaHecho': 'Fecha', 'HoraHecho' : 'Hora', 'ColoniaHechos' : 'Colonia', 'AlcaldiaHechos' : 'Alcalia', })
 print(dfS.columns)
 #EDA
 
+dfS.to_csv("D:\TT2\Data\BaseLimpiaUpdate.csv", index=False) #guaramos el dataframe final en un CSV
 
 print(dfS.head)
 
