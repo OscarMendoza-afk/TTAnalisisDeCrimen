@@ -73,7 +73,12 @@ dfC.drop(dfC[dfC['ao_hechos'] >= 2022 ].index, inplace = True)
 
 dfC = dfC[dfC['ao_hechos'].notna()] #se eliminan las filas con el espacio en blnaco
 
+
+
+dfC = dfC.rename(columns={'dia' :'Dia', 'mes_hechos' :'Mes', 'ao_hechos' : 'Año', 'fecha' : 'Fecha', 'hora' : 'Hora', 'delito' : 'Delito', 'fiscalia' : 'Fiscalia', 'categoria_delito' : 'Categoria', 'calle_hechos' : 'Calle', 'calle_hechos2' : 'CalleSecundaria', 'colonia_hechos' : 'Colonia' , 'alcaldia_hechos' : 'Alcaldia' })
 print(dfC.columns)
+
+print(dfC.head)
 
 dfC.to_csv("D:\TT2\Data\BaseCompletaLimpia.csv", index=False) #guaramos el dataframe final en un CSV
 
@@ -81,9 +86,9 @@ dfC.to_csv("D:\TT2\Data\BaseCompletaLimpia.csv", index=False) #guaramos el dataf
 #EDA
 
 
-print(dfC.describe)
+#print(dfC.describe)
 
-print(dfC.columns)
+#print(dfC.columns)
 
 profile = ProfileReport(dfC, title="EDA Analisis de Crimen", explorative=True)
 

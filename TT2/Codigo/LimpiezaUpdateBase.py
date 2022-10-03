@@ -73,17 +73,19 @@ dfS.drop(dfS[dfS['Año_hecho'] >= 2023 ].index, inplace = True)
 
 #dfS = dfS[dfS['Año_hecho'].notna()] #se eliminan las filas con el espacio en blnaco
 
-print(dfS.columns)
+#print(dfS.columns)
 
 dfS.to_csv("D:\TT2\Data\BaseLimpiaUpdate.csv", index=False) #guaramos el dataframe final en un CSV
 
 
+dfS = dfS.rename(columns={'dia_hechos' :'Dia', 'Mes_hecho' :'Mes', 'Año_hecho' : 'Año' , 'FechaHecho': 'Fecha', 'HoraHecho' : 'Hora', 'ColoniaHechos' : 'Colonia', 'AlcaldiaHechos' : 'Alcalia', })
+print(dfS.columns)
 #EDA
 
 
-print(dfS.describe)
+print(dfS.head)
 
-print(dfS.columns)
+#print(dfS.columns)
 
 profile = ProfileReport(dfS, title="EDA Update", explorative=True)
 
