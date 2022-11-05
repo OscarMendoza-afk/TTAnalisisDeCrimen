@@ -8,7 +8,7 @@ from pandas_profiling import ProfileReport
 df = pd.read_csv("D:\TT2\Data\BaseCompletaUTF.csv" )   #Se carga el archivo CSV como un dataframe
 
 print(df.columns)
-
+print(df.head)
 
 df = df.drop([
             'tempo', 

@@ -5,10 +5,14 @@ from pandas_profiling import ProfileReport
 #Limpieza de columnas y datos vacios
 
 
-dfU = pd.read_csv(r"D:\TT2\Data\UpdateCrimenes.csv" )   #Se carga el archivo CSV como un dataframe
+#Se carga el archivo CSV como un dataframe
+
+dfU = pd.read_csv(r"D:\TT2\Data\BaseLimpiaUpdate.csv" )
 
 print(dfU.columns)
+print(dfU.head)
 
+print(dfU["HoraInicio"])
 
 dfU = dfU.drop([
              
