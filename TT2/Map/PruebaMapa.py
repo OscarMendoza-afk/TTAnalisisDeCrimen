@@ -47,7 +47,7 @@ fig = go.Figure(data=go.Scattergeo(
 fig.update_layout(
         title = 'Most trafficked US airports<br>(Hover for airport names)',
         geo = dict(
-            #geojson=response,
+            geojson=response,
             showland = True,
             landcolor = "rgb(250, 250, 250)",
             subunitcolor = "rgb(217, 217, 217)",
