@@ -1,5 +1,6 @@
 import plotly.graph_objects as go
 import plotly.express as px
+import matplotlib.pyplot as plt
 import json
 import requests
 import pandas as pd

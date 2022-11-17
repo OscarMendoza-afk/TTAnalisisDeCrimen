@@ -12,8 +12,8 @@ import numpy as np
 df = pd.read_csv(r"/media/ozkr/Datos/TT2/Data/BaseLimpiaUpdate.csv" )
 
 fig = px.histogram(df, 
-                    x="Mes", 
-                    y="Delito", 
+                    x="Delito", 
+                    y="Mes", 
                     #color="Sexo", 
                     #marginal="rug",
                    hover_data=df.columns)
