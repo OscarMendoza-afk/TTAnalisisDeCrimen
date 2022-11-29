@@ -4,15 +4,12 @@ import json
 import requests
 import pandas as pd
 import numpy as np
-
-import dash             #(version 1.0.0)
-import dash_core_components as dcc
-import dash_html_components as html
-from dash.dependencies import Input, Output
-import plotly          #(version 4.4.1)
+import dash         
+from dash import Dash, html, dcc, Input, Output
+import plotly         
 
 
-
+AlcaldiasLim = json.loads("/home/ozkr/Descargas/Alcaldia.json")
 
 #fecha1=int(input('Introduce el primer año>> '))
 #fecha2=int(input('Introduce el segundo año>> '))
@@ -53,7 +50,7 @@ año1=str(fecha1)
 año2=str(fecha2)
 de=str(crimen)
 
-fig = px.density_mapbox(df, lon='longitud', lat='latitud',  radius=10,
+fig = px.density_mapbox(df, geojson=AlcaldiasLim , lon='longitud', lat='latitud',  radius=10,
                         title="Mapa de calor de " + de + " en los años " +  año1 + " - " + año2 ,
                         color_continuous_scale="inferno",
                         center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=9,                        

@@ -7,7 +7,7 @@ from pandas_profiling import ProfileReport
 
 #Se carga el archivo CSV como un dataframe
 
-dfU = pd.read_csv(r"D:\TT2\Data\BaseLimpiaUpdate.csv" )
+dfU = pd.read_csv(r"/media/ozkr/Datos/TT2/Data/UpdateCrimenes.csv")
 
 print(dfU.columns)
 print(dfU.head)
@@ -80,11 +80,11 @@ dfS.drop(dfS[dfS['Año_hecho'] >= 2023 ].index, inplace = True)
 #print(dfS.columns)
 
 
-dfS = dfS.rename(columns={'dia_hechos' :'Dia', 'Mes_hecho' :'Mes', 'Año_hecho' : 'Año' , 'FechaHecho': 'Fecha', 'HoraHecho' : 'Hora', 'ColoniaHechos' : 'Colonia', 'AlcaldiaHechos' : 'Alcalia', })
+dfS = dfS.rename(columns={'dia_hechos' :'Dia', 'Mes_hecho' :'Mes', 'Año_hecho' : 'Año' , 'FechaHecho': 'Fecha', 'HoraHecho' : 'Hora', 'ColoniaHechos' : 'Colonia', 'AlcaldiaHechos' : 'Alcaldia', })
 print(dfS.columns)
 #EDA
 
-dfS.to_csv("D:\TT2\Data\BaseLimpiaUpdate.csv", index=False) #guaramos el dataframe final en un CSV
+dfS.to_csv("D:\TT2\Data\Completa28Nov.csv", index=False) #guaramos el dataframe final en un CSV
 
 print(dfS.head)
 
@@ -92,4 +92,4 @@ print(dfS.head)
 
 profile = ProfileReport(dfS, title="EDA Update", explorative=True)
 
-profile.to_file("ReporteEDAUpdate.html")
+profile.to_file("ReporteEDA28Nov.html")
