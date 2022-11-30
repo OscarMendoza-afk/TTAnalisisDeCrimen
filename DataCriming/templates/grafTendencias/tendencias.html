@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Tendencias {% endblock title %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <h1 class="text-center my-4">Análisis de Tendencias del Crimen</h1>
+    </div>
+
+    <div class="row">
+        <div class="justificado my-2 px-4" >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, dolores rem. Ducimus placeat excepturi consequuntur exercitationem dolor nesciunt optio nobis commodi ut, enim eligendi quaerat error est reiciendis tempora doloribus?
+        </div>
+      </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+
+            <form>
+                <div class="form-floating mb-4">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option value="1">Rayas</option>
+                        <option value="2">Pastel</option>
+                        <option value="3">Lineas</option>
+                    </select>
+                    <label for="floatingSelect">Tipo de visualizacion</label>
+                </div>
+
+                <div class="form-floating mb-4">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option value="1">Robo</option>
+                        <option value="2">Homicidio</option>
+                        <option value="3">Violacion</option>
+                    </select>
+                    <label for="floatingSelect">Tipo de crimen</label>
+                </div>
+
+                <div class="form-floating mb-4">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option value="1">Iztapaluca</option>
+                        <option value="2">Gustavo A. Madero</option>
+                        <option value="3">Azcapotzalco</option>
+                    </select>
+                    <label for="floatingSelect">Alcaldia</label>
+                </div>
+
+                <label for="customRange" class="form-label">Año de inicio de estudio:</label>
+                <input type="range" class="form-range px-2" min="2016" max="2022" id="customRange" />
+                <img src="{% static 'img/ImageAnios.png' %}" class="img-fluid  mb-4" alt="ImgAnios">
+
+                <label for="customRange" class="form-label">Año de fin de estudio:</label>
+                <input type="range" class="form-range px-2" min="2016" max="2022" id="customRange" />
+                <img src="{% static 'img/ImageAnios.png' %}" class="img-fluid  mb-4" alt="ImgAnios">
+
+            </form>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9"></div>
+    </div>
+</div>
+
+{% endblock body %}

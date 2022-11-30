@@ -1,0 +1,63 @@
+{% load static %}
+
+<nav  class="navbar navbar-expand-lg bg-light border-2 border-bottom border-primary text-black">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-2" href="{% url 'grafTendencias_app:inicio' %}">
+      <img
+        src="{% static 'img/logo_IPN.png' %}"
+        alt="Logo"
+        width="30"
+        height="50"
+      />
+      &ensp;TT 2021-B106
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#MenuNavBar"
+      aria-controls="MenuNavBar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse ms-4" id="MenuNavBar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'grafTendencias_app:inicio' %}"> &ensp;Inicio</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'grafTendencias_app:motivacion' %}"> &ensp;Motivación</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownAnalisis"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            &ensp;Análisis</a
+          >
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownAnalisis">
+            <li>
+              <a class="dropdown-item" href=" {% url 'expDatos_app:exploratorio' %} ">Exploratorio</a></li>
+            <li><a class="dropdown-item" href=" {% url 'crearMapas_app:crearMapas' %} ">Geoespacial</a></li>
+            <li><a class="dropdown-item" href="{% url 'grafTendencias_app:tendencias' %}">Tendencias</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'grafTendencias_app:ayuda' %}"> &ensp;Ayuda</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

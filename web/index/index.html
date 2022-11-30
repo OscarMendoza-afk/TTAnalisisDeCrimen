@@ -1,126 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Analisi de crimen</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" src="/CSS/estilo.css">
-</head>
-<body>
-   
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" src="/CSS/estilo.css" />
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="https://seeklogo.com/images/I/IPN-logo-BB9124D61B-seeklogo.com.png" alt="" width="30" height="50">
-            TT 2021-B106
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Ayuda
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Contacto</a></li>
-                  <li><a class="dropdown-item" href="#">Manual de usuario</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Analisis
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="./Analisis.html">AGC</a></li>
-                  <li><a class="dropdown-item" href="./deteccion.html">DTC</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://seeklogo.com/images/I/IPN-logo-BB9124D61B-seeklogo.com.png"
+            alt=""
+            width="30"
+            height="50"
+          />
+          TT 2021-B106
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Ayuda
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Contacto</a></li>
+                <li><a class="dropdown-item" href="#">Manual de usuario</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Analisis
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="./Analisis.html">AGC</a></li>
+                <li>
+                  <a class="dropdown-item" href="./deteccion.html">DTC</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
 
-    <marquee class="marq"
-      vspace=5>
-    </marquee>
+    <marquee class="marq" vspace="5"> </marquee>
 
-    <H2 style="text-align:center">Análisis de Crimen en la Ciudad de México usando Data Mining</H2>
-    
-    <marquee class="marq"
-                 vspace=15>
-    </marquee>
-    <H3 style="text-align:center">Sobre este trabajo</H3>
-    
-    <P style="text-align: center">
-      En este trabajo se propone el análisis de crimen en las alcaldias de la Ciudad de México desde una perspectiva espacio temporal, considerando análisis de concentración de crímenes usando minería de datos y Sistemas de Información Geográfica. Con el objetivo de descubrir y comprender cómo se comporta la concentración y densidad de crímenes en dichas alcaldias alcaldías, para mostrar patrones tanto geográficos como temporales. 
+    <h2 style="text-align: center">
+      Análisis de Crimen en la Ciudad de México usando Data Mining
+    </h2>
+
+    <marquee class="marq" vspace="15"> </marquee>
+    <h3 style="text-align: center">Sobre este trabajo</h3>
+
+    <p style="text-align: center">
+      En este trabajo se propone el análisis de crimen en las alcaldias de la
+      Ciudad de México desde una perspectiva espacio temporal, considerando
+      análisis de concentración de crímenes usando minería de datos y Sistemas
+      de Información Geográfica. Con el objetivo de descubrir y comprender cómo
+      se comporta la concentración y densidad de crímenes en dichas alcaldias
+      alcaldías, para mostrar patrones tanto geográficos como temporales.
     </p>
 
-    <marquee class="marq"
-                 vspace=25>
-    </marquee>
-    
-    <h5 style="text-align: center">Selecciona el analisis de crimen que quieres realizar</h5>
+    <marquee class="marq" vspace="25"> </marquee>
 
-    <marquee class="marq"
-                 vspace=10>
-    </marquee>
-   
-    <div style="text-align:center">
+    <h5 style="text-align: center">
+      Selecciona el analisis de crimen que quieres realizar
+    </h5>
+
+    <marquee class="marq" vspace="10"> </marquee>
+
+    <div style="text-align: center">
       <div>
-        
         <div class="figure">
-          <a href="./Analisis.html" ><p><img id ="foto" width="100" height="100" HSPACE="80" title=""  src="http://2.bp.blogspot.com/-8bQrYyWO_kw/U5e03cPwXTI/AAAAAAAAAoo/Sp6aJdnFsr8/s1600/GUID-143B3B54-7960-4958-85DE-524E3D0BB68F-web.png"/>
-          </p></a>Analisis geoespacial de crimen
+          <a href="./Analisis.html"
+            ><p>
+              <img
+                id="foto"
+                width="100"
+                height="100"
+                hspace="80"
+                title=""
+                src="http://2.bp.blogspot.com/-8bQrYyWO_kw/U5e03cPwXTI/AAAAAAAAAoo/Sp6aJdnFsr8/s1600/GUID-143B3B54-7960-4958-85DE-524E3D0BB68F-web.png"
+              /></p></a
+          >Analisis geoespacial de crimen
           <p>(AGC)</p>
         </div>
-        
+
         <div class="figure">
-          <a href="./deteccion.html"><p><img id ="foto2" width="100" height="100" HSPACE="80" src="https://cdn-icons-png.flaticon.com/512/38/38834.png"/>
-          </p></a>Deteccion de tendencias de crimen
+          <a href="./deteccion.html"
+            ><p>
+              <img
+                id="foto2"
+                width="100"
+                height="100"
+                hspace="80"
+                src="https://cdn-icons-png.flaticon.com/512/38/38834.png"
+              /></p></a
+          >Deteccion de tendencias de crimen
           <p>(DTC)</p>
         </div>
-        
       </div>
     </div>
 
-    <marquee class="marq"
-    vspace=15>
-    </marquee>
+    <marquee class="marq" vspace="15"> </marquee>
 
     <ul class="nav justify-content-center">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#scrollspyHeading1">Justificación</a>
+        <a class="nav-link active" aria-current="page" href="#scrollspyHeading1"
+          >Justificación</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#scrollspyHeading2">EDA</a>
+        <a class="nav-link active" aria-current="page" href="#scrollspyHeading2"
+          >EDA</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#scrollspyHeading3">Link</a>
+        <a class="nav-link active" aria-current="page" href="#scrollspyHeading3"
+          >Link</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="##scrollspyHeading4">Disabled</a>
+        <a
+          class="nav-link active"
+          aria-current="page"
+          href="##scrollspyHeading4"
+          >Disabled</a
+        >
       </li>
     </ul>
 
-    <marquee class="marq"
-    vspace=90>
-    </marquee>
+    <marquee class="marq" vspace="90"> </marquee>
 
-    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
+    <div
+      data-bs-spy="scroll"
+      data-bs-target="#navbar-example2"
+      data-bs-root-margin="0px 0px -40%"
+      data-bs-smooth-scroll="true"
+      class="scrollspy-example bg-light p-3 rounded-2"
+      tabindex="0"
+    >
       <h4 id="scrollspyHeading1">Justificación</h4>
-      <p style="text-align: justify;">
-        El reto es definir mecanismos de integración de datos de delitos ya que las estructuras pueden cambiar según la región, pero sobre todo identificar zonas de concentración de delitos con claridad y útiles es una tarea que depende de la densidad de los diferentes tipos delitos en ciertas zonas y periodos de tiempo esto es necesario para poder analizar el comportamiento delictivo y conocer patrones de comportamiento de delitos, la complejidad aumenta si consideramos otras fuentes de datos relacionadas como densidad de población o niveles socioeconómicos.
-        La principal motivación del presente estudio es analizar el clima de violencia y crímenes en la Ciudad de México, la cual consideramos es una zona sumamente relevante pues es de gran afluencia no solo por los habitantes de la misma ciudad, si no por gran parte de personas de la zona metropolitana del Estado de México que viajan día a día a sus centros de trabajo o estudios y que como ya se mencionó, definen una de las aglomeraciones urbanas más grandes del mundo.
-        Este análisis nos puede ayudar a mejorar la seguridad pública, identificar tendencias emergentes y planificar estrategias de prevención del delito. En Estados Unidos este análisis de zonas de concentración del delito proporciona herramientas estadísticas para ayudar a los organismos encargados de hacer cumplir la ley y a los investigadores de justicia penal en sus esfuerzos de mapeo del crimen. 
-        A lo largo de este trabajo terminal, se busca la realización de un dashboard que muestre los conocimientos adquiridos sobre la concentración de delitos en la Ciudad de México haciendo uso de las técnicas de minería de datos y análisis espacial, generando así una fuente de información confiable, siendo esta de acceso público para informar, concientizar y funcionar como un apoyo en la medida de lo posible a los tomadores de decisiones en el ámbito político
-        </p>
+      <p style="text-align: justify">
+        El reto es definir mecanismos de integración de datos de delitos ya que
+        las estructuras pueden cambiar según la región, pero sobre todo
+        identificar zonas de concentración de delitos con claridad y útiles es
+        una tarea que depende de la densidad de los diferentes tipos delitos en
+        ciertas zonas y periodos de tiempo esto es necesario para poder analizar
+        el comportamiento delictivo y conocer patrones de comportamiento de
+        delitos, la complejidad aumenta si consideramos otras fuentes de datos
+        relacionadas como densidad de población o niveles socioeconómicos. La
+        principal motivación del presente estudio es analizar el clima de
+        violencia y crímenes en la Ciudad de México, la cual consideramos es una
+        zona sumamente relevante pues es de gran afluencia no solo por los
+        habitantes de la misma ciudad, si no por gran parte de personas de la
+        zona metropolitana del Estado de México que viajan día a día a sus
+        centros de trabajo o estudios y que como ya se mencionó, definen una de
+        las aglomeraciones urbanas más grandes del mundo. Este análisis nos
+        puede ayudar a mejorar la seguridad pública, identificar tendencias
+        emergentes y planificar estrategias de prevención del delito. En Estados
+        Unidos este análisis de zonas de concentración del delito proporciona
+        herramientas estadísticas para ayudar a los organismos encargados de
+        hacer cumplir la ley y a los investigadores de justicia penal en sus
+        esfuerzos de mapeo del crimen. A lo largo de este trabajo terminal, se
+        busca la realización de un dashboard que muestre los conocimientos
+        adquiridos sobre la concentración de delitos en la Ciudad de México
+        haciendo uso de las técnicas de minería de datos y análisis espacial,
+        generando así una fuente de información confiable, siendo esta de acceso
+        público para informar, concientizar y funcionar como un apoyo en la
+        medida de lo posible a los tomadores de decisiones en el ámbito político
+      </p>
       <h4 id="scrollspyHeading2">EDA</h4>
       <p>...</p>
       <h4 id="scrollspyHeading3">Third heading</h4>
@@ -130,9 +216,16 @@
       <h4 id="scrollspyHeading5">Fifth heading</h4>
       <p>...</p>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+      integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+      integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

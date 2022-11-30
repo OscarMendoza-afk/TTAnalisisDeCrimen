@@ -1,0 +1,154 @@
+{% extends 'base.html' %}'
+{% load static %} 
+
+{% block title %} Motivación {%endblock title %} 
+
+{% block body %}
+
+{% include 'includes/title.html' %}
+
+<div class="container">
+  <div class="row justify-content-center my-5 py-2">
+
+    <div class="col-8 col-sm-4 col-md-3 col-lg-3 col-xl-3 mb-3">
+      <div class="d-grid gap-4">
+
+        <button class="btn btn-primary shadow" type="button" data-bs-toggle="collapse" data-bs-target="#MenuMotivacion-1" aria-expanded="false" aria-controls="MenuMotivacion-1">
+          Introducción
+        </button>
+
+        <button class="btn btn-primary shadow" type="button" data-bs-toggle="collapse" data-bs-target="#MenuMotivacion-2" aria-expanded="false" aria-controls="MenuMotivacion-2">
+          Planteamiento del problema
+        </button>
+
+        <button class="btn btn-primary shadow" type="button" data-bs-toggle="collapse" data-bs-target="#MenuMotivacion-3" aria-expanded="false" aria-controls="MenuMotivacion-3">
+          Objetivos
+        </button>
+
+        <button class="btn btn-primary shadow" type="button" data-bs-toggle="collapse" data-bs-target="#MenuMotivacion-4" aria-expanded="false" aria-controls="MenuMotivacion-4">
+          Justificación
+        </button>
+
+        <button class="btn btn-primary shadow" type="button" data-bs-toggle="collapse" data-bs-target="#MenuMotivacion-5" aria-expanded="false" aria-controls="MenuMotivacion-5">
+          Fuente de datos
+        </button>
+
+        <button class="btn btn-primary shadow" type="button" data-bs-toggle="collapse" data-bs-target="#MenuMotivacion-6" aria-expanded="false" aria-controls="MenuMotivacion-6">
+          Tecnologías utilizadas
+        </button>
+      </div>
+    </div>
+
+    <div class="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-9 justificado bg-image rounded lh-lg fw-semibold">
+      <div class="collapse p-3" id="MenuMotivacion-1">
+        <div class="card card-body opacity-75">
+          <p>
+            El comportamiento en tiempo y espacio de crímenes en zonas urbanas como la Ciudad de México (CDMX) es un tema vigente que aún no se ha estudiado en extenso desde la perspectiva de la integración de datos abiertos y que es de principal utilidad para tomadores de decisiones en ámbito de política pública, que les permita conocer las regiones donde los crímenes tienen una mayor concentración en el tiempo, caracterizando la frecuencia de ocurrencia y ubicación, con el objetivo de generar nuevas estrategias en apoyo a la comunidad, así como para los habitantes de la CDMX interesados en mantenerse informados acerca del índice de delincuencia en su localidad y su evolución a través del tiempo.</p>
+          <p>
+            En este trabajo se propone el análisis de crimen en dicha región del valle de México desde una perspectiva espacio temporal, usando minería de datos y Sistemas de Información Geográfica. El objetivo es descubrir y comprender cómo se comporta la concentración y densidad de crímenes de alto impacto en estos municipios y alcaldías, para mostrar patrones tanto geográficos como temporales.
+          </p>
+        </div>
+      </div>
+      
+      <div class="collapse p-3" id="MenuMotivacion-2">
+        <div class="card card-body opacity-75">
+          <p>
+            El reto es definir mecanismos de integración de datos de delitos, ya que las estructuras pueden cambiar según la región, pero sobre todo identificar zonas de concentración de delitos con claridad y útiles es una tarea que depende de la densidad de los diferentes tipos delitos en ciertas zonas y periodos de tiempo; esto es necesario para poder analizar el comportamiento delictivo y conocer patrones de comportamiento de delitos, la complejidad aumenta si consideramos otras fuentes de datos relacionadas como densidad de población o niveles socioeconómicos.
+          </p>
+        </div>
+      </div>
+      
+      <div class="collapse p-3" id="MenuMotivacion-3">
+        <div class="card card-body opacity-75">
+          <h3 class="mb-2">Particular</h3>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Desarrollar un prototipo de software para procesar datos de delitos de alto impacto en la Ciudad de México para identificar zonas de concentración de crímenes, patrones de comportamiento y tendencias en tiempo y en espacio, empleando técnicas data mining y de sistemas de información geográfica.</li>
+          </ul>
+            
+          <h3 class="mb-2 mt-5">Especificos</h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              • Seleccionar y comprender las fuentes de datos de crímenes en las zonas de estudio.</li>
+            <li class="list-group-item">
+              •	Definir una metodología de data mining para caracterizar en el tiempo y el espacio los conjuntos de datos de crimen de las zonas de estudio.</li>
+            <li class="list-group-item">
+              •	Acoplar a la metodología mecanismos de análisis espacio temporal que apliquen para el procesamiento de datos de crímenes.</li>
+            <li class="list-group-item">
+              •	Estudiar y definir posibles algoritmos específicos para el análisis de datos de crímenes.</li>
+            <li class="list-group-item">
+              •	Explorar mecanismos para identificar y visualizar zonas de concentración o densidad de crímenes de alto impacto de acuerdo con la región de estudio.</li>
+            <li class="list-group-item">
+              •	Diseñar una arquitectura de data mining que permita el descubrimiento no trivial de conocimiento en crimen, procesamientos de datos y de visualización de resultados.</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="collapse p-3" id="MenuMotivacion-4">
+        <div class="card card-body opacity-75">
+          <p>
+            La principal motivación para el desarrollo de este proyecto es analizar el clima de violencia y crímenes en relación a la Ciudad de México, la cual consideramos muy relevante pues es una zona de gran afluencia no solo por los habitantes si no por gran parte de personas de la Zona Metropolitana, ya sea por cruzarla para llegar al trabajo o centro de estudios.
+          </p>
+          <p>
+            Este análisis nos puede ayudar a mejorar la seguridad pública, identificar tendencias emergentes y planificar estrategias de prevención del delito. En estados unidos este análisis de zonas de concentración del delito proporciona herramientas estadísticas para ayudar a los organismos encargados de hacer cumplir la ley y a los investigadores de justicia penal en sus esfuerzos de mapeo del crimen.
+          </p>
+          <p>
+            A lo largo de este proyecto, se busca la realización de un dashboard que muestre los conocimientos adquiridos sobre la concentración de delitos en la Ciudad de México haciendo uso de las técnicas de minería de datos y análisis espacial, generando así una fuente de información confiable, siendo esta de acceso público para informar, concientizar y funcionar como un apoyo en la medida de lo posible a los tomadores de decisiones en el ámbito político y social.
+          </p>
+        </div>
+      </div>
+      
+      <div class="collapse p-3" id="MenuMotivacion-5">
+        <div class="card card-body opacity-75">
+          <p>
+            Los datos son tomados del Portal de Datos Abiertos de la Ciudad de México, estos pertenecen a la Procuraduría General de Justicia (PGJ) y pueden encontrarse en el siguiente 
+            <a href="https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj" 
+            class="stretched-link">vinculo</a>
+          </p>
+          <p>
+            Esta base de datos contiene la información actualizada de las víctimas de los delitos en las carpetas de investigación de la Fiscalía General de Justicia (FGJ) de la Ciudad de México a partir de enero de 2016 hasta marzo de 2022.
+          </p>
+          <p>
+            Cabe recalcar que la base de datos con la que funciona este sistema es una integración de la versión anterior a la actualización ocurrida en agosto de 2022 y la nueva versión que contempla datos desde enero de 2019, esto con la finalidad de tener la mayor cantidad de datos disponibles y mantener el sistema actualizado.
+          </p>
+        </div>
+      </div>
+      
+      <div class="collapse p-3" id="MenuMotivacion-6">
+        <div class="card card-body opacity-75">
+          <p>
+            Las principales tecnologías utilizadas para el desarrollo de este proyecto fueron:
+          </p>
+          <div class="row justify-content-center">
+            <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4 text-center">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  Django</li>
+                <li class="list-group-item">
+                  SQL Server</li>
+                <li class="list-group-item">
+                  Python</li>
+                <li class="list-group-item">
+                  HTML5</li>
+                <li class="list-group-item">
+                  CSS3</li>
+                <li class="list-group-item">
+                  Bootstrap</li>
+                <li class="list-group-item">
+                  Jupyter Lab</li>
+                <li class="list-group-item">
+                  GitHub</li>
+              </ul>
+            </div>
+            <div class="col-8 col-sm-10 col-md-8 col-lg-8 col-xl-8">
+              <img src="{% static 'img/logo_Tecnologias.png' %}" class="img-fluid my-3" alt="ImgTecnologias">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

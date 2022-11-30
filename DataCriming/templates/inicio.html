@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Inicio {% endblock title %}
+
+{% block body %}
+
+{% include 'includes/title.html' %}
+
+<div class="container">
+  <div class="row">
+    <h2 class="text-center my-3">Sobre este trabajo</h2>
+
+    <div class="justificado my-3 lh-lg " >
+      En este trabajo se propone el análisis de crimen en las alcaldias de la Ciudad de México desde una perspectiva espacio temporal, considerando análisis de concentración de crímenes usando Minería de Datos (DM) y Sistemas de Información Geográfica (GIS). Con el objetivo de descubrir y comprender cómo se comporta la concentración y densidad de crímenes en dichas alcaldias alcaldías, para mostrar patrones tanto geográficos como temporales.
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <h3 class="text-center my-4">Selecciona el análisis de crimen que quieres realizar</h3>
+  
+    <div class="col-8 col-sm-8 col-md-6 col-lg-4 col-xl-4 text-center px-4">
+      <div class="card border-primary shadow p-3 mb-5 bg-body rounded " >
+        
+          <img src="{% static 'img/logo_AGC.png' %}" class="card-img-top" alt="ImgGeoespacial">
+
+          <div class="card-body">
+            <a href="#" class="btn btn-primary shadow my-2 p-2 mb-4 rounded">Geoespacial</a>
+            <p class="card-text">Crea, visualiza y compara diversos tipos de mapas.</p>
+          </div>
+        
+      </div>
+    </div>
+
+    <div class="col-8 col-sm-8 col-md-6 col-lg-4 col-xl-4 text-center px-4">
+      <div class="card border-primary shadow p-3 mb-5 bg-body rounded" >
+        <img src="{% static 'img/logo_AGC.png' %}" class="card-img-top" alt="ImgTendencias">
+        <div class="card-body">
+          <a href="#" class="btn btn-primary shadow my-2 p-2 mb-4 rounded">Tendencias</a>
+          <p class="card-text">Identifica comportamientos en espacio y tiempo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-8 col-sm-8 col-md-6 col-lg-4 col-xl-4 text-center px-4">
+      <div class="card border-primary shadow p-3 mb-5 bg-body rounded">
+        <img src="{% static 'img/logo_AGC.png' %}" class="card-img-top" alt="ImgExploratorio">
+        <div class="card-body">
+          <a href="#" class="btn btn-primary shadow my-2 p-2 mb-4 rounded">Exploratorio</a>
+          <p class="card-text">Encuentra informacion sobre el crimen en la CDMX</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center my-3 pb-3">
+    <h3 class="text-left">Este es un trabajo realizado por:</h3>
+
+    <div class="col-7 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+
+      <img src="{% static 'img/ImageZagal.png' %}" class="img-fluid my-2 py-2 px-4" alt="ImgDrZagal">
+
+      <div class="accordion accordion-flush" id="accordionFlushZagal">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              <p class="text-center fw-light"> Dr. Roberto Eswart Zagal Flores</p>
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushZagal">
+            <div class="accordion-body justificado">
+              Es egresadode la Ingeniería en Sistemas Computacionales de la Escuela Superior de Cómputo del IPN, culminó sus estudios de Maestría en Ciencias de la Computación en el Centro de Investigación en Computación del IPN (No. Cedula 11050111). Tiene un doctorado en tecnología avanzada de la Sección de Estudios de Posgrado de la UPIITA IPN. Actualmente es profesor de la escuela Superior de Cómputo y sus áreas de interés son Data Mining, Spatial Data Mining, GIS, Web Semántica, Data Integration, IoT y Arquitecturasde Sistemas de Información. Ha trabajado en proyectos de tecnología en la iniciativa privada y en el sector público.
+              Email: zagalmmx@hotmail.com, Tel. 57296000, Ext. 52032.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-7 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+      <img src="{% static 'img/ImageOscar.png' %}" class="img-fluid my-2 py-2 px-4" alt="ImgOscar">
+
+      <div class="accordion accordion-flush" id="accordionFlushOscar">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              <p class="text-center fw-light"> Ing. José Oscar Mendoza Cuellar</p>
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushOscar">
+            <div class="accordion-body justificado">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo enim optio, non eligendi consequuntur quibusdam velit maxime distinctio culpa aperiam reprehenderit ut molestias est! Sit consequuntur itaque nisi sunt magni.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-7 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+      <img src="{% static 'img/ImageVictor.png' %}" class="img-fluid my-2 py-2 px-4" alt="ImgVictor">
+
+      <div class="accordion accordion-flush" id="accordionFlushVictor">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              <p class="text-center fw-light"> Ing. Victor Hugo Morales Zaranda</p>
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushVictor">
+            <div class="accordion-body justificado">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet dolor laboriosam debitis excepturi deserunt cum illum veniam, laborum totam, velit nihil. Porro molestias qui iure suscipit non facere placeat ea.
+            </div>
+          </div>
+        </div>
+      </div>    
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
