@@ -7,10 +7,10 @@ from pandas_profiling import ProfileReport
 
 #Se carga el archivo CSV como un dataframe
 
-df = pd.read_csv(r"C:\Users\ozkr_\Downloads\BaseLimpiaUpdate.csv")
+df = pd.read_csv(r"D:\TT2\Data\BaseLimpiaUpdate.csv")
 
 
-df.drop(df[df['Alcalia'] != 'AZCAPOTZALCO' ].index, inplace = True) 
+df.drop(df[df['Alcalia'] != 'XOCHIMILCO' ].index, inplace = True) 
 
 
-df.to_csv("AZCAPOTZALCO.csv", index=False)
+df.to_csv("XOCHIMILCO.csv", index=False)
