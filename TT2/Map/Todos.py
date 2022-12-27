@@ -14,7 +14,7 @@ crimen="FRAUDE"
 alcaldia="COYOACAN"
 
 
-df = pd.read_csv(r"/media/ozkr/Datos/TT2/Data/BaseLimpiaUpdate.csv" )
+df = pd.read_csv(r"/run/media/ozkr/Datos/TT2/Data/BaseLimpiaUpdate.csv" )
 
 #print(df.columns)
 
@@ -24,7 +24,7 @@ df['Info'] = '<br>Delito:' + df['Delito'].astype(str) + '<br> Año:' + df['Año'
 df.drop(df[df['Año'] < fecha1 ].index, inplace = True)  
 df.drop(df[df['Año'] > fecha2 ].index, inplace = True)  
 
-#df.drop(df[df['Delito'] != crimen ].index, inplace = True)
+df.drop(df[df['Delito'] != crimen ].index, inplace = True)
 
 #df.drop(df[df['Alcalia'] != alcaldia ].index, inplace = True)
 

@@ -15,7 +15,7 @@ crimen="FRAUDE"
 alcaldia="COYOACAN"
 
 
-df = pd.read_csv(r"/media/ozkr/Datos/TT2/Data/BaseLimpiaUpdate.csv" )
+df = pd.read_csv(r"/run/media/ozkr/Datos/TT2/Data/BaseLimpiaUpdate.csv" )
 
 print(df.columns)
 
