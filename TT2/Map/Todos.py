@@ -16,7 +16,9 @@ alcaldia="COYOACAN"
 
 df = pd.read_csv(r"/run/media/ozkr/Datos/TT2/Data/BaseLimpiaUpdate.csv" )
 
-#print(df.columns)
+print(df.columns)
+
+print(df.Fecha)
 
 df['Info'] = '<br>Delito:' + df['Delito'].astype(str) + '<br> Año:' + df['Año'].astype(str)
 
