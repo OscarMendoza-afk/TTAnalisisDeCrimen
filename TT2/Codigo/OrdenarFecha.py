@@ -15,7 +15,4 @@ df['Fecha'] = df['Fecha'].dt.strftime('%Y-%m-%d')
 
 print(df.Fecha)
 
-
-
-
 df.to_csv("/home/ozkr/Documentos/BaseCrimenes.csv", index=False)
