@@ -2,7 +2,7 @@ import pandas as pd
 import math
 
 
-df = pd.read_csv(r"/home/ozkr/Documentos/BaseCrimenes.csv")
+df = pd.read_csv(r"/home/ozkr/Documentos/UpdateCrimenesENE.csv")
 
 df.drop(df[df['Hora'] == 'NA'].index, inplace = True) 
 
@@ -71,8 +71,8 @@ print (df.Hora)
 
 
 
-#print(df['Hora'].info)
+print(df['Hora'].info)
 
-df.to_csv("/home/ozkr/Documentos/BaseCrimenes.csv", index=False)
+df.to_csv("/home/ozkr/Documentos/UpdateCrimenesENE.csv", index=False)
 
 

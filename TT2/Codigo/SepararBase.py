@@ -4,9 +4,9 @@ from pandas_profiling import ProfileReport
 import math
 
 
-df = pd.read_csv(r"/home/ozkr/Documentos/BaseCrimenes.csv")
+df = pd.read_csv(r"/home/ozkr/Documentos/UpdateCrimenesENE.csv")
 
-df.rename(columns={'Alcalia': 'Alcaldia'}, inplace=True)
+#df.rename(columns={'Alcalia': 'Alcaldia'}, inplace=True)
 
 print(df.columns)
 
@@ -34,13 +34,13 @@ def AddF(F):
 
 
 
-dfDelito = df[['idCarpeta','Delito','CalidadJuridica','Categoria']]
+dfDelito = df[['Delito','Categoria','Competencia']]
 
 dfDelito.to_csv("/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/TablaDelito.csv", index=False)
 
 
 
-dfUbicacion = df[['idCarpeta','Colonia','Alcaldia','longitud','latitud']]
+dfUbicacion = df[['Alcaldia','Colonia']]
 
 #dfUbicacion['idUbicacion'] = dfUbicacion.index
 
@@ -48,11 +48,21 @@ dfUbicacion = df[['idCarpeta','Colonia','Alcaldia','longitud','latitud']]
 
 #dfUbicacion['idUbicacion'] = dfUbicacion['idUbicacion'].apply(AddU)
 
-dfUbicacion.to_csv("/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/TablaUbicaion.csv", index=False)
+dfUbicacion.to_csv("/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/TablaUbicacion.csv", index=False)
 
 
+dfGeo = df[['longitud','latitud']]
 
-dfPersona = df[['idCarpeta','Sexo','Edad','TipoPersona']]
+#dfUbicacion['idUbicacion'] = dfUbicacion.index
+
+#dfUbicacion = dfUbicacion[['idUbicacion','Colonia','Alcaldia','longitud','latitud']]
+
+#dfUbicacion['idUbicacion'] = dfUbicacion['idUbicacion'].apply(AddU)
+
+dfGeo.to_csv("/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/TablaGeo.csv", index=False)
+
+
+dfPersona = df[['Sexo','Edad','TipoPersona','CalidadJuridica']]
 
 #dfPersona['idPerosna'] = dfPersona.index
 
@@ -64,7 +74,7 @@ dfPersona.to_csv("/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/Ta
 
 
 
-dfFecha= df[['idCarpeta','Dia','Mes','Año','Fecha','Hora']]
+dfFecha= df[['Dia','Mes','Año','Fecha','Hora']]
 
 #dfFecha['idFecha'] = dfFecha.index
 
@@ -74,6 +84,8 @@ dfFecha= df[['idCarpeta','Dia','Mes','Año','Fecha','Hora']]
 
 dfFecha.to_csv("/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/TablaFecha.csv", index=False)
 
-print(dfFecha)
+#print(dfFecha)
 
-dfDelito.duplicated(subset=['idCarpeta'])
+#dfDelito.duplicated(subset=['idCarpeta'])
+
+print(df.describe)

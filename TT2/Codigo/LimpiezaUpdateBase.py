@@ -7,29 +7,28 @@ from pandas_profiling import ProfileReport
 
 #Se carga el archivo CSV como un dataframe
 
-dfU = pd.read_csv(r"/media/ozkr/Datos/TT2/Data/UpdateCrimenes.csv")
+dfU = pd.read_csv(r"/home/ozkr/Documentos/UpdateCrimenes.csv")
 
 print(dfU.columns)
 print(dfU.head)
 
-print(dfU["HoraInicio"])
+print(dfU["AlcaldiaHechos"])
 
 dfU = dfU.drop([
-             
+            'Unnamed: 0',
             'Año_inicio', 
             'Mes_inicio', 
             'FechaInicio',
-            'HoraInicio',
-            'competencia'] , axis = 1) #Se eliminan las columnas que  no son de utilidad
+            'HoraInicio'] , axis = 1) #Se eliminan las columnas que  no son de utilidad
 
-#print(df.columns)
+print(dfU.columns)
 
 
-#df.drop(df[df['longitud'] == 'NA'].index, inplace = True)  #se borran los compos "NA" de la columna longitud pero se deja el espacio en blnaco
+dfU.drop(dfU[dfU['longitud'] == 'NA'].index, inplace = True)  #se borran los compos "NA" de la columna longitud pero se deja el espacio en blnaco
 
-#df = df[df['longitud'].notna()] #se eliminan las filas con el espacio en blnaco
+dfU = dfU[dfU['longitud'].notna()] #se eliminan las filas con el espacio en blnaco
 
-#print(df.describe)
+
 
 
 #Separacion de fecha en dia y hora
@@ -58,6 +57,7 @@ dfS = dfS[[
            'Delito', 
            'CalidadJuridica', 
            'Categoria', 
+           'competencia',
            'ColoniaHechos', 
            'AlcaldiaHechos',
            'Sexo',
@@ -80,16 +80,16 @@ dfS.drop(dfS[dfS['Año_hecho'] >= 2023 ].index, inplace = True)
 #print(dfS.columns)
 
 
-dfS = dfS.rename(columns={'dia_hechos' :'Dia', 'Mes_hecho' :'Mes', 'Año_hecho' : 'Año' , 'FechaHecho': 'Fecha', 'HoraHecho' : 'Hora', 'ColoniaHechos' : 'Colonia', 'AlcaldiaHechos' : 'Alcaldia', })
+dfS = dfS.rename(columns={'dia_hechos' :'Dia', 'competencia' : 'Competencia', 'Mes_hecho' :'Mes', 'Año_hecho' : 'Año' , 'FechaHecho': 'Fecha', 'HoraHecho' : 'Hora', 'ColoniaHechos' : 'Colonia', 'AlcaldiaHechos' : 'Alcaldia', })
 print(dfS.columns)
 #EDA
 
-dfS.to_csv("D:\TT2\Data\Completa28Nov.csv", index=False) #guaramos el dataframe final en un CSV
+dfS.to_csv("/home/ozkr/Documentos/UpdateCrimenesENE.csv", index=False) #guaramos el dataframe final en un CSV
+
+#print(dfS.head)
 
 print(dfS.head)
 
-#print(dfS.columns)
+#profile = ProfileReport(dfS, title="EDA Update", explorative=True)
 
-profile = ProfileReport(dfS, title="EDA Update", explorative=True)
-
-profile.to_file("ReporteEDA28Nov.html")
+#profile.to_file("ReporteEDA1ENE.html")

@@ -1,8 +1,9 @@
+DROP TABLE IF EXISTS HechosCrimen;
 DROP TABLE IF EXISTS Fecha;
 DROP TABLE IF EXISTS Persona;
 DROP TABLE IF EXISTS Ubicacion;
 DROP TABLE IF EXISTS Delito;
-
+DROP TABLE IF EXISTS GeoPoint;
 
 /* Completa 
 
@@ -30,55 +31,83 @@ CREATE TABLE crimenes_cdmx (
 
 /* ######################################################################*/
 
+
+
 /* Delito */
 
 CREATE TABLE Delito (
-	idCarpeta INTEGER,
-	Delito VARCHAR(500),
-	CalidadJuridica VARCHAR(500),
-	Categoria VARCHAR(500),
-	PRIMARY KEY (idCarpeta)
+	idDelito INTEGER NOT NULL AUTO_INCREMENT,
+	Delito VARCHAR(200),
+	Categoria VARCHAR(200),
+	Competencia VARCHAR(200),
+	PRIMARY KEY (idDelito)
 	
 )ENGINE=innodb;
 
 /* Ubicacion */
 
 CREATE TABLE Ubicacion (
-	idUbicacion INTEGER,
-	Colonia VARCHAR(250),
+	idUbicacion INTEGER NOT NULL AUTO_INCREMENT,
 	Alcaldia VARCHAR(150),
+	Colonia VARCHAR(250),
+	PRIMARY KEY (idUbicacion)
+)ENGINE=innodb;
+
+/* Geopoint */
+
+CREATE TABLE GeoPoint (
+	idGeoPoint INTEGER NOT NULL AUTO_INCREMENT,
 	longitud DOUBLE,
 	latitud DOUBLE,
-	FOREIGN KEY(idUbicacion) REFERENCES Delito(idCarpeta)
-	ON DELETE CASCADE ON UPDATE CASCADE
+	PRIMARY KEY (idGeoPoint)
 )ENGINE=innodb;
 
 
 /* Persona */
 
 CREATE TABLE Persona (
-	idPersona INTEGER,
+	idPersona INTEGER NOT NULL AUTO_INCREMENT,
 	Sexo VARCHAR(50),
 	Edad INTEGER,
 	TipoPersona VARCHAR(100),
-	FOREIGN KEY(idPersona) REFERENCES Delito(idCarpeta)
-	ON DELETE CASCADE ON UPDATE CASCADE
+	CalidadJuridica VARCHAR(100),
+	PRIMARY KEY (idPersona)
 )ENGINE=innodb;
 
 /* Fecha */
 
 CREATE TABLE Fecha (
-	idFecha INTEGER,
+	idFecha INTEGER NOT NULL AUTO_INCREMENT,
 	Dia INTEGER,
-	Mes VARCHAR(50),
+	Mes VARCHAR(20),
 	Año YEAR,
 	Fecha DATE,
 	Hora TIME,
-	FOREIGN KEY(idFecha) REFERENCES Delito(idCarpeta)
-	ON DELETE CASCADE ON UPDATE CASCADE
+	PRIMARY KEY (idFecha)
 )ENGINE=innodb;
 
-/* ######################################################################*/
+/* HechosCrimen */
+
+CREATE TABLE HechosCrimen (
+	idHechosCrimen INTEGER NOT NULL AUTO_INCREMENT,
+	id_NumCarpeta INTEGER NOT NULL,
+	id_Delito INTEGER NOT NULL,
+	id_Persona INTEGER NOT NULL,
+	id_Fecha INTEGER NOT NULL,
+	id_Ubicacion INTEGER NOT NULL,
+	id_GeoPoint INTEGER NOT NULL,
+	PRIMARY KEY (idHechosCrimen),
+	FOREIGN KEY (id_Delito) REFERENCES Delito (idDelito),
+	FOREIGN KEY (id_Persona) REFERENCES Persona (idPersona),
+	FOREIGN KEY (id_Fecha) REFERENCES Fecha (idFecha),
+	FOREIGN KEY (id_Ubicacion) REFERENCES Ubicacion (idUbicacion),
+	FOREIGN KEY (id_GeoPoint) REFERENCES GeoPoint (idGeoPoint)
+
+)ENGINE=innodb;
+
+
+
+/*  
 LOAD DATA LOCAL INFILE '/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/TablaDelito.csv' INTO TABLE Delito FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';	
 
 LOAD DATA LOCAL INFILE '/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/TablaFecha.csv' INTO TABLE Fecha  FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
@@ -86,3 +115,5 @@ LOAD DATA LOCAL INFILE '/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/Base
 LOAD DATA LOCAL INFILE '/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/TablaUbicaion.csv' INTO TABLE Ubicacion  FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
 
 LOAD DATA LOCAL INFILE '/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/TablaPersona.csv' INTO TABLE Persona  FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+
+*/
