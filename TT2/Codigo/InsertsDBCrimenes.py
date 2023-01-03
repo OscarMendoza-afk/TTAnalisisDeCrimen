@@ -21,13 +21,13 @@ dfG = pd.read_csv("/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/T
 cols = "'Sexo','Edad','TipoPersona','CalidadJuridica'"
 
 # Insert DataFrame recrds one by one.
-for i,row in dfF.iterrows():
-    sql = "INSERT INTO Fecha (`Dia`,`Mes`,`Año`,`Fecha`,`Hora`) VALUES (%s,%s,%s,%s,%s)"
+for i,row in dfG.iterrows():
+    sql = "INSERT INTO GeoPoint (`longitud`,`latitud`) VALUES (%s,%s)"
     cursor.execute(sql, tuple(row) )
 
     connection.commit()
 
-sqlSel = "SELECT * FROM `Fecha` limit 20"
+sqlSel = "SELECT * FROM `GeoPoint` limit 20"
 cursor.execute(sqlSel)
 
 result = cursor.fetchall()

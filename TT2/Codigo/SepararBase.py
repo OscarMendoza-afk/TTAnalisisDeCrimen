@@ -6,6 +6,8 @@ import math
 
 df = pd.read_csv(r"/home/ozkr/Documentos/UpdateCrimenesENE.csv")
 
+print(df.columns)
+
 #df.rename(columns={'Alcalia': 'Alcaldia'}, inplace=True)
 
 print(df.columns)

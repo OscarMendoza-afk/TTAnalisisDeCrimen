@@ -7,15 +7,15 @@ from pandas_profiling import ProfileReport
 
 #Se carga el archivo CSV como un dataframe
 
-dfU = pd.read_csv(r"/home/ozkr/Documentos/UpdateCrimenes.csv")
+dfU = pd.read_csv(r"/home/ozkr/Documentos/BasesLimpias/CrimenesCleanSDF.csv")
 
 print(dfU.columns)
 print(dfU.head)
 
-print(dfU["AlcaldiaHechos"])
+print(dfU["HoraHecho"])
 
 dfU = dfU.drop([
-            'Unnamed: 0',
+            
             'Año_inicio', 
             'Mes_inicio', 
             'FechaInicio',

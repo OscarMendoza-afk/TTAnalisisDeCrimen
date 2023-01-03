@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS HechosCrimen;
-DROP TABLE IF EXISTS Fecha;
-DROP TABLE IF EXISTS Persona;
-DROP TABLE IF EXISTS Ubicacion;
 DROP TABLE IF EXISTS Delito;
+DROP TABLE IF EXISTS Fecha;
+DROP TABLE IF EXISTS Ubicacion;
+DROP TABLE IF EXISTS Persona;
 DROP TABLE IF EXISTS GeoPoint;
 
 /* Completa 
@@ -37,7 +37,7 @@ CREATE TABLE crimenes_cdmx (
 
 CREATE TABLE Delito (
 	idDelito INTEGER NOT NULL AUTO_INCREMENT,
-	Delito VARCHAR(200),
+	Delito VARCHAR(300),
 	Categoria VARCHAR(200),
 	Competencia VARCHAR(200),
 	PRIMARY KEY (idDelito)
@@ -90,7 +90,6 @@ CREATE TABLE Fecha (
 
 CREATE TABLE HechosCrimen (
 	idHechosCrimen INTEGER NOT NULL AUTO_INCREMENT,
-	id_NumCarpeta INTEGER NOT NULL,
 	id_Delito INTEGER NOT NULL,
 	id_Persona INTEGER NOT NULL,
 	id_Fecha INTEGER NOT NULL,
@@ -105,6 +104,12 @@ CREATE TABLE HechosCrimen (
 
 )ENGINE=innodb;
 
+ALTER TABLE HechosCrimen ADD FOREIGN KEY (id_Delito) REFERENCES Delito (idDelito);
+ALTER TABLE HechosCrimen ADD FOREIGN KEY (id_Ubicacion) REFERENCES Ubicacion (idUbicacion);
+ALTER TABLE HechosCrimen ADD FOREIGN KEY (id_Fecha) REFERENCES Fecha (idFecha);
+ALTER TABLE HechosCrimen ADD FOREIGN KEY (id_Persona) REFERENCES Persona (idPersona);
+ALTER TABLE HechosCrimen ADD FOREIGN KEY (id_GeoPoint) REFERENCES GeoPoint (idGeoPoint);
+
 
 
 /*  
@@ -117,3 +122,6 @@ LOAD DATA LOCAL INFILE '/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/Base
 LOAD DATA LOCAL INFILE '/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/BaseCsv/TablaPersona.csv' INTO TABLE Persona  FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
 
 */
+
+
+CREATE INDEX id_GeoPoint ON HechosCrimen (id_GeoPoint);
