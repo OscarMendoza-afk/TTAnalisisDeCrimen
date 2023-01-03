@@ -6,43 +6,45 @@ import pandas as pd
 import numpy as np
 
 
-fecha1=int(input('Introduce el primer año>> '))
-fecha2=int(input('Introduce el segundo año>> '))
+#fecha1=int(input('Introduce el primer año>> '))
+#fecha2=int(input('Introduce el segundo año>> '))
 
-crimen="FRAUDE"
+#crimen="FRAUDE"
 
-alcaldia="COYOACAN"
+#alcaldia="COYOACAN"
 
 
-df = pd.read_csv(r"/run/media/ozkr/Datos/TT2/Data/BaseLimpiaUpdate.csv" )
+df = pd.read_csv(r"/home/ozkr/Documentos/UpdateCrimenesENE.csv" )
 
-print(df.columns)
+#print(df.columns)
 
-print(df.Fecha)
+#print(df.Fecha)
 
 df['Info'] = '<br>Delito:' + df['Delito'].astype(str) + '<br> Año:' + df['Año'].astype(str)
 
 
-df.drop(df[df['Año'] < fecha1 ].index, inplace = True)  
-df.drop(df[df['Año'] > fecha2 ].index, inplace = True)  
+#df.drop(df[df['Año'] < fecha1 ].index, inplace = True)  
+#df.drop(df[df['Año'] > fecha2 ].index, inplace = True)  
 
-df.drop(df[df['Delito'] != crimen ].index, inplace = True)
+#df.drop(df[df['Delito'] != crimen ].index, inplace = True)
 
 #df.drop(df[df['Alcalia'] != alcaldia ].index, inplace = True)
 
-año1=str(fecha1)
-año2=str(fecha2)
-de=str(crimen)
+#año1=str(fecha1)
+#año2=str(fecha2)
+#de=str(crimen)
 
 
 fig = px.density_mapbox(df, 
                         #geojson='/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/Map/coloniascdmx.geojson',
                         lon='longitud', lat='latitud',  radius=10,
-                        title="Mapa de calor de " + de + " en los años " +  año1 + " - " + año2 ,
+                        title="Mapa de calor de la CDMX " ,
                         color_continuous_scale="inferno",
                         center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=9,                        
-                        hover_name="Alcalia",
+                        hover_name="Alcaldia",
                         hover_data=["Info"],
                         mapbox_style="carto-positron")
                         
-fig.show()
+#fig.show()
+
+fig.write_html("/home/ozkr/Documentos/GitHub/TTAnalisisDeCrimen/TT2/Map/MapasHTML/MapaCalorCDMX.html")
