@@ -7,37 +7,50 @@
 {% block body %}
 
 <div class="container">
-    <div class="row">
-        <h1 class="text-center my-5">Análisis Geoespacial de Datos del Crimen</h1>
-    </div>
+  <div class="row">
+      <h1 class="text-center my-4">Análisis Geoespacial de Datos del Crimen</h1>
+  </div>
 
-    <div class="row">
-        <div class="justificado mb-2" >
-          Con esta herramienta se puede realizar un Análisis Geoespacial.
-        </div>
+  <div class="row">
+      <div class="justificado my-1" >
+          Con esta herramienta se puede realizar un Análisis Geoespacial según diversos flitros, con la intención de crear, visualizar y comprar diversos tipos de mapas.
       </div>
+    </div>
 </div>
 
 <div class="container">
+
   <div class="row my-3">
       <div class="col-12">
-          <label for="customRange" class="form-label">Ingrese los datos para generar un reporte</label>
+          <label for="customRange" class="form-label">Ingrese los siguientes datos para generar un mapa</label>
       </div>
   </div>
-  
-  <div class="row px-3">
-      <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
+
+  <div class="row my-4">
+      <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+
           <form>
-              <div class="form-floating mb-4">
-                  <select class="form-select" id="tipoCrimen" aria-label="Floating label select example">
+              <div class="form-floating mb-2">
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                      <option value="1">Coropletas</option>
+                      <option value="2">Densidad de calor</option>
+                      <option value="3">HotSpot 1 (DBSCAN)</option>
+                      <option value="3">HotSpot 2 (MEAN SHIFT)</option>
+                  </select>
+                  <label for="floatingSelect">Tipo de mapa</label>
+              </div>
+
+              <div class="form-floating mb-2">
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                      <option value="0">Todos</option>
                       <option value="1">Robo</option>
                       <option value="2">Homicidio</option>
                       <option value="3">Violacion</option>
                   </select>
-                  <label for="tipoCrimen">Tipo de crimen</label>
+                  <label for="floatingSelect">Tipo de crimen</label>
               </div>
 
-              <div class="form-floating mb-4">
+              <div class="form-floating mb-2">
                   <select class="form-select" id="alcaldia" aria-label="Floating label select example">
                       <option value="0">Todas</option>
                       <option value="1">Azcapotzalco</option>
@@ -59,63 +72,40 @@
                   </select>
                   <label for="alcaldia">Alcaldia</label>
               </div>
-          </form>
-      </div>
 
+              <div class="form-floating mb-2">
+                  <select class="form-select" id="tipoCrimen" aria-label="Floating label select example">
+                      <option value="0">Ambos</option>
+                      <option value="1">Femenino</option>
+                      <option value="2">Masculino</option>
+                  </select>
+                  <label for="tipoCrimen">Sexo</label>
+              </div>
 
-      <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
-          <label class="mb-2 px-2 text-secondary" for="fechaInicio">Fecha de inicio</label>
-          <input id="fechaInicio" class="form-control" type="date" min="2016-01-01" max="2022-06-30"/>
-      </div>
-
-      <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
-          <label class="mb-2 px-2 text-secondary" for="fechaFin">Fecha de termino</label>
-          <input id="fechaFin" class="form-control" type="date" min="2016-01-01" max="2022-06-30"/>
-      </div>
-
-      <div class="form-check col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="MapaCalor">
-        <label class="form-check-label" for="MapaCalor">
-          Mapa de Calor
-        </label>
-      </div>
-      <div class="form-check col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Coropletas" checked>
-        <label class="form-check-label" for="Coropletas">
-          Coropletas
-        </label>
-      </div>
-      <div class="form-check col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="HotSpot" checked>
-        <label class="form-check-label" for="HotSpot">
-          HotSpot
-        </label>
-      </div>
-      
-
-  </div>
-
-  <div offset-md-4></div>
-
-  <div class="row justify-content-center align-items-center my-5">
-      <div class="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-5">
-          <a class="btn btn-primary d-grid shadow mx-5 mb-4" href="">Generar Mapa</a>
-      </div>
-      <div class="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-5">
-          <a class="btn btn-primary d-grid shadow mx-5 mb-4" href="">Comparar Mapas</a>
-      </div>
-  </div>
+              <div>
+                  <label class="mb-1 px-2 text-secondary" for="fechaInicio">Fecha de inicio</label>
+                  <input id="fechaInicio" class="form-control mb-2" type="date" min="2016-01-01" max="2022-06-30"/>
   
-</div>
+                  <label class="my-1 px-2 text-secondary" for="fechaFin">Fecha de termino</label>
+                  <input id="fechaFin" class="form-control mb-3" type="date" min="2016-01-01" max="2022-06-30"/>
+              </div>
+          </form>
+
+          <div class="justify-content-center align-items-center my-3">
+              <a class="btn btn-primary d-grid shadow mx-3 mb-3" href="#generarGrafica">Generar Mapa</a>
+              <a class="btn btn-primary d-grid shadow mx-3 mb-2" href="#guardarGrafica">Guardar Mapa</a>
+          </div>
+
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
+
+          <iframe src="{% static 'Mapa/Mapa.html' %}"></iframe>
 
 
-<div class="container">
-  <div class="row justify-content-center align-items-center my-1">
-      <div class="embed-responsive embed-responsive-4by3">
-          <iframe class="embed-responsive-item" src="{% static 'Mapa/Mapa.html' %}"></iframe>
+
       </div>
   </div>
 </div>
-
 
 {% endblock body %}

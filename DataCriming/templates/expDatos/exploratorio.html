@@ -12,23 +12,16 @@
     </div>
 
     <div class="row">
-        <div class="justificado my-2 px-4" >
-          Con esta herramienta se puede realizar un Análisis Exploratorio de Datos (EDA), con la finalidad de obtener información valiosa acerca del conjunto de datos proporcionado por el protal de datos abiertos de la CDMX.
-          
-          Cabe recalcar que...
-          <ul>
-            <li>Los datos ya estan limpios</li>
-            <li>La base de datos ha sido transformada</li>
-            <li>Se ha integrado</li>
-          </ul>
+        <div class="justificado my-1" >
+          Con esta herramienta se puede realizar un Análisis Exploratorio de Datos (EDA), con la finalidad de obtener información valiosa acerca del conjunto de datos proporcionado por el protal de datos abiertos de la CDMX según diversos flitros.
         </div>
-      </div>
+    </div>
 </div>
 
 <div class="container">
     <div class="row my-3">
         <div class="col-12">
-            <label for="customRange" class="form-label">Ingrese los datos para generar un reporte</label>
+            <label for="customRange" class="form-label">Ingrese los siguientes datos para generar un reporte</label>
         </div>
     </div>
     
@@ -37,13 +30,18 @@
             <form>
                 <div class="form-floating mb-4">
                     <select class="form-select" id="tipoCrimen" aria-label="Floating label select example">
+                        <option value="0">Todos</option>
                         <option value="1">Robo</option>
                         <option value="2">Homicidio</option>
                         <option value="3">Violacion</option>
                     </select>
                     <label for="tipoCrimen">Tipo de crimen</label>
                 </div>
+            </form>
+        </div>
 
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
+            <form>
                 <div class="form-floating mb-4">
                     <select class="form-select" id="alcaldia" aria-label="Floating label select example">
                         <option value="0">Todas</option>
@@ -70,27 +68,38 @@
         </div>
 
         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
+            <form>
+                <div class="form-floating mb-4">
+                    <select class="form-select" id="tipoCrimen" aria-label="Floating label select example">
+                        <option value="0">Ambos</option>
+                        <option value="1">Femenino</option>
+                        <option value="2">Masculino</option>
+                    </select>
+                    <label for="tipoCrimen">Sexo</label>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 px-2 py-1">
             <label class="mb-2 px-2 text-secondary" for="fechaInicio">Fecha de inicio</label>
             <input id="fechaInicio" class="form-control" type="date" min="2016-01-01" max="2022-06-30"/>
         </div>
-
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
+    
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 px-2 py-1">
             <label class="mb-2 px-2 text-secondary" for="fechaFin">Fecha de termino</label>
             <input id="fechaFin" class="form-control" type="date" min="2016-01-01" max="2022-06-30"/>
         </div>
 
     </div>
 
-    <div class="row justify-content-center align-items-center my-3">
-        <div class="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-5">
+    <div class="row justify-content-center align-items-center my-5">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-5">
             <a class="btn btn-primary d-grid shadow mx-5 mb-4" href="#generarReporte">Generar Reporte</a>
         </div>
-        <div class="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-5">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-5">
             <a class="btn btn-primary d-grid shadow mx-5 mb-4" href="#guardarReporte">Guardar Reporte</a>
         </div>
     </div>
-
-    
 </div>
 
 
@@ -103,37 +112,3 @@
 </div>
 
 {% endblock body %}
-
-<!--
-    <div class="form-floating mb-4">
-                    <select class="form-select" id="tipoCrimen" aria-label="Floating label select example">
-                        <option value="1">Robo</option>
-                        <option value="2">Homicidio</option>
-                        <option value="3">Violacion</option>
-                    </select>
-                    <label for="tipoCrimen">Tipo de crimen</label>
-                </div>
-
-                <div class="form-floating mb-4">
-                    <select class="form-select" id="alcaldia" aria-label="Floating label select example">
-                        <option value="0">Todas</option>
-                        <option value="1">Azcapotzalco</option>
-                        <option value="2">Álvaro Obregón</option>
-                        <option value="3">Benito Juárez</option>
-                        <option value="4">Coyoacán</option>
-                        <option value="5">Cuajimalpa de Morelos</option>
-                        <option value="6">Cuauhtémoc</option>
-                        <option value="7">Gustavo A. Madero</option>
-                        <option value="8">Iztacalco</option>
-                        <option value="9">Iztapalapa</option>
-                        <option value="10">La Magdalena Contreras</option>
-                        <option value="11">Miguel Hidalgo</option>
-                        <option value="12">Milpa Alta</option>
-                        <option value="13">Tlalpan</option>
-                        <option value="14">Tláhuac</option>
-                        <option value="15">Venustiano Carranza</option>
-                        <option value="16">Xochimilco</option>
-                    </select>
-                    <label for="alcaldia">Alcaldia</label>
-                </div>
--->
