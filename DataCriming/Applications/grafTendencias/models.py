@@ -3,6 +3,8 @@ from django.db import models
 
 # Create your models here.
 
+Sep = '_'
+
 class Delito(models.Model):
     iddelito = models.AutoField(db_column='idDelito', primary_key=True)  # Field name made lowercase.
     delito = models.CharField(db_column='Delito', max_length=300, blank=True, null=True)  # Field name made lowercase.
@@ -14,7 +16,7 @@ class Delito(models.Model):
         db_table = 'Delito'
 
     def __str__(self):
-        return self.delito + '-' + self.categoria #+ '-' + self.competencia
+        return self.delito + Sep + self.categoria #+ Sep + self.competencia
 
 
 class Fecha(models.Model):
@@ -30,7 +32,7 @@ class Fecha(models.Model):
         db_table = 'Fecha'
     
     def __str__(self):
-        return str(self.fecha)# + '-' + str(self.hora) #+ '-' + str(self.dia) + '-' + self.mes + '-' + str(self.anio)
+        return str(self.fecha)# + Sep + str(self.hora) #+ Sep + str(self.dia) + Sep + self.mes + Sep + str(self.anio)
 
 """
 class Geopoint(models.Model):
@@ -43,7 +45,7 @@ class Geopoint(models.Model):
         db_table = 'GeoPoint'
 
     def __str__(self):
-        return str(self.longitud) + '-' + str(self.latitud)
+        return str(self.longitud) + Sep + str(self.latitud)
 
 """
 
@@ -59,7 +61,7 @@ class Persona(models.Model):
         db_table = 'Persona'
     
     def __str__(self):
-        return self.sexo #+ '-' + str(self.edad)# + '-' + self.tipopersona + '-' + self.calidadjuridica
+        return self.sexo #+ Sep + str(self.edad)# + Sep + self.tipopersona + Sep + self.calidadjuridica
 
 
 
@@ -73,7 +75,7 @@ class Ubicacion(models.Model):
         db_table = 'Ubicacion'
     
     def __str__(self):
-        return self.alcaldia #+ '-' + self.colonia
+        return self.alcaldia #+ Sep + self.colonia
 
 
 class Hechoscrimen(models.Model):
@@ -90,4 +92,4 @@ class Hechoscrimen(models.Model):
         db_table = 'HechosCrimen'
     
     def __str__(self):
-        return str(self.id_delito) + '-' + str(self.id_persona) + '-' + str(self.id_fecha) + '-' + str(self.id_ubicacion) #+ '-' + str(self.numcarpeta) 
+        return str(self.id_delito) + Sep + str(self.id_persona) + Sep + str(self.id_fecha) + Sep + str(self.id_ubicacion) #+ Sep + str(self.numcarpeta) 
