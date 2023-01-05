@@ -99,13 +99,24 @@
       </div>
 
       <div class="col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
+        <!-- Aqui va el mapa -->
 
           <iframe src="{% static 'Mapa/Mapa.html' %}"></iframe>
 
-
-
       </div>
   </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center align-items-center my-3">
+        <div class="col-12">
+            
+            {% for i in object_list %}
+                <li> {{ i }} </li>
+            {% endfor %}
+
+        </div>
+    </div>
 </div>
 
 {% endblock body %}

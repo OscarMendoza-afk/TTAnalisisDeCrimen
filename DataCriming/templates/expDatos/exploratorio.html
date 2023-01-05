@@ -106,6 +106,18 @@
 <div class="container">
     <div class="row justify-content-center align-items-center my-3">
         <div class="col-12">
+            
+            {% for i in object_list %}
+                <li> {{ i }} </li>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center align-items-center my-3">
+        <div class="col-12">
             <iframe src="{% static 'reporte.html' %}"></iframe>
         </div>
     </div>

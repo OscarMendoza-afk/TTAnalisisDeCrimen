@@ -23,14 +23,14 @@ class Fecha(models.Model):
     #mes = models.CharField(db_column='Mes', max_length=12, blank=True, null=True)  # Field name made lowercase.
     #anio = models.IntegerField(db_column='Anio', blank=True, null=True)  # Field name made lowercase.
     fecha = models.DateField(db_column='Fecha', blank=True, null=True)  # Field name made lowercase.
-    hora = models.TimeField(db_column='Hora', blank=True, null=True)  # Field name made lowercase.
+    #hora = models.TimeField(db_column='Hora', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'Fecha'
     
     def __str__(self):
-        return str(self.fecha) + '-' + str(self.hora) #+ '-' + str(self.dia) + '-' + self.mes + '-' + str(self.anio)
+        return str(self.fecha)# + '-' + str(self.hora) #+ '-' + str(self.dia) + '-' + self.mes + '-' + str(self.anio)
 
 """
 class Geopoint(models.Model):
@@ -50,7 +50,7 @@ class Geopoint(models.Model):
 class Persona(models.Model):
     idpersona = models.AutoField(db_column='idPersona', primary_key=True)  # Field name made lowercase.
     sexo = models.CharField(db_column='Sexo', max_length=15, blank=True, null=True)  # Field name made lowercase.
-    edad = models.IntegerField(db_column='Edad', blank=True, null=True)  # Field name made lowercase.
+    #edad = models.IntegerField(db_column='Edad', blank=True, null=True)  # Field name made lowercase.
     #tipopersona = models.CharField(db_column='TipoPersona', max_length=15, blank=True, null=True)  # Field name made lowercase.
     #calidadjuridica = models.CharField(db_column='CalidadJuridica', max_length=35, blank=True, null=True)  # Field name made lowercase.
 
@@ -59,7 +59,7 @@ class Persona(models.Model):
         db_table = 'Persona'
     
     def __str__(self):
-        return self.sexo + '-' + str(self.edad)# + '-' + self.tipopersona + '-' + self.calidadjuridica
+        return self.sexo #+ '-' + str(self.edad)# + '-' + self.tipopersona + '-' + self.calidadjuridica
 
 
 
