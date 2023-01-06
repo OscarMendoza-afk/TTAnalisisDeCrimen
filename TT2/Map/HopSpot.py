@@ -15,7 +15,7 @@ crimen="FRAUDE"
 alcaldia="COYOACAN"
 
 
-df = pd.read_csv(r"/home/ozkr/Documentos/UpdateCrimenesENE.csv" )
+df = pd.read_csv(r"/home/ozkr/Documentos/UpdateCrimenesCleanV.csv" )
 
 #print(df.columns)
 
