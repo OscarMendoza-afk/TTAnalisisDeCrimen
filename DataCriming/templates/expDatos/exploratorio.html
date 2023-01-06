@@ -27,40 +27,62 @@
         </div>
     </div>
 
-    <form>
+    <form method="GET"> {% csrf_token %}
         <div class="row px-3">
+
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
                 <div class="form-floating mb-4">
-                    <select class="form-select" id="tipoCrimen" aria-label="Floating label select example">
-                        <option value="0">Todos</option>
-                        <option value="1">Robo</option>
-                        <option value="2">Homicidio</option>
-                        <option value="3">Violacion</option>
+                    <select class="form-select" id="tipoDelito" name="categoria"
+                        aria-label="Floating label select example">
+                        <option value="">Todos</option>
+                        <option value="DELITO DE BAJO IMPACTO">Delito de bajo impacto</option>
+                        <option value="HOMICIDIO DOLOSO">Homicidio doloso</option>
+                        <option value="HECHO NO DELICTIVO">Hecho no delictivo</option>
+                        <option value="LESIONES DOLOSAS POR DISPARO DE ARMA DE FUEGO">Lesiones dolosas por disparo de
+                            arma de fuego</option>
+                        <option value="ROBO A CASA HABITACIÓN CON VIOLENCIA">Robo a casa habitación</option>
+                        <option value="ROBO A CUENTAHABIENTE SALIENDO DEL CAJERO CON VIOLENCIA">Robo a cuentahabiente
+                            saliendo del cajero</option>
+                        <option value="ROBO A NEGOCIO CON VIOLENCIA">Robo a negocio</option>
+                        <option value="ROBO A PASAJERO A BORDO DE MICROBUS CON Y SIN VIOLENCIA">Robo a pasajero a bordo
+                            de microbús</option>
+                        <option value="ROBO A PASAJERO A BORDO DE TAXI CON VIOLENCIA">Robo a pasajero a bordo de taxi
+                        </option>
+                        <option value="ROBO A PASAJERO A BORDO DEL METRO CON Y SIN VIOLENCIA">Robo a pasajero a bordo
+                            del metro</option>
+                        <option value="ROBO A REPARTIDOR CON Y SIN VIOLENCIA">Robo a repartidor</option>
+                        <option value="ROBO A TRANSEUNTE EN VÍA PÚBLICA CON Y SIN VIOLENCIA">Robo a transeunte en vía
+                            pública</option>
+                        <option value="ROBO A TRANSPORTISTA CON Y SIN VIOLENCIA">Robo a transportista</option>
+                        <option value="ROBO DE VEHÍCULO CON Y SIN VIOLENCIA">Robo de vehículo</option>
+                        <option value="SECUESTRO">Secuestro</option>
+                        <option value="VIOLACIÓN">Violación</option>
                     </select>
-                    <label for="tipoCrimen">Tipo de crimen</label>
+                    <label for="tipoDelito">Tipo de crimen</label>
                 </div>
             </div>
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
                 <div class="form-floating mb-4">
-                    <select class="form-select" id="alcaldia" aria-label="Floating label select example">
-                        <option value="0">Todas</option>
-                        <option value="1">Azcapotzalco</option>
-                        <option value="2">Álvaro Obregón</option>
-                        <option value="3">Benito Juárez</option>
-                        <option value="4">Coyoacán</option>
-                        <option value="5">Cuajimalpa de Morelos</option>
-                        <option value="6">Cuauhtémoc</option>
-                        <option value="7">Gustavo A. Madero</option>
-                        <option value="8">Iztacalco</option>
-                        <option value="9">Iztapalapa</option>
-                        <option value="10">La Magdalena Contreras</option>
-                        <option value="11">Miguel Hidalgo</option>
-                        <option value="12">Milpa Alta</option>
-                        <option value="13">Tlalpan</option>
-                        <option value="14">Tláhuac</option>
-                        <option value="15">Venustiano Carranza</option>
-                        <option value="16">Xochimilco</option>
+                    <select class="form-select" id="alcaldia" name="alcaldia"
+                        aria-label="Floating label select example">
+                        <option value="">Todas</option>
+                        <option value="AZCAPOTZALCO">Azcapotzalco</option>
+                        <option value="ALVARO OBREGON">Álvaro Obregón</option>
+                        <option value="BENITO JUAREZ">Benito Juárez</option>
+                        <option value="COYOACAN">Coyoacán</option>
+                        <option value="CUAJIMALPA DE MORELOS">Cuajimalpa de Morelos</option>
+                        <option value="CUAUHTEMOC">Cuauhtémoc</option>
+                        <option value="GUSTAVO A MADERO">Gustavo A. Madero</option>
+                        <option value="IZTACALCO">Iztacalco</option>
+                        <option value="IZTAPALAPA">Iztapalapa</option>
+                        <option value="LA MAGDALENA CONTRERAS">La Magdalena Contreras</option>
+                        <option value="MIGUEL HIDALGO">Miguel Hidalgo</option>
+                        <option value="MILPA ALTA">Milpa Alta</option>
+                        <option value="TLALPAN">Tlalpan</option>
+                        <option value="TLAHUAC">Tláhuac</option>
+                        <option value="VENUSTIANO CARRANZA">Venustiano Carranza</option>
+                        <option value="XOCHIMILCO">Xochimilco</option>
                     </select>
                     <label for="alcaldia">Alcaldia</label>
                 </div>
@@ -68,38 +90,45 @@
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
                 <div class="form-floating mb-4">
-                    <select class="form-select" id="tipoCrimen" aria-label="Floating label select example">
-                        <option value="0">Ambos</option>
-                        <option value="1">Femenino</option>
-                        <option value="2">Masculino</option>
+                    <select class="form-select" id="tipoSexo" name="sexo" aria-label="Floating label select example">
+                        <option value="">Ambos</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Masculino">Masculino</option>
                     </select>
                     <label for="tipoCrimen">Sexo</label>
                 </div>
             </div>
 
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 px-2 py-1">
-                <label class="mb-2 px-2 text-secondary" for="fechaInicio">Fecha de inicio</label>
-                <input id="fechaInicio" class="form-control" type="date" min="2016-01-01" max="2022-06-30" />
+                <label class="mb-1 px-2 text-secondary" for="fechaInicio">Fecha de inicio</label>
+                <input id="fechaInicio" class="form-control mb-2" name="fInicio" type="date" min="2016-01-01"
+                    max="2022-06-30" pattern="\d{4}-\d{2}-\d{2}" />
             </div>
 
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 px-2 py-1">
-                <label class="mb-2 px-2 text-secondary" for="fechaFin">Fecha de termino</label>
-                <input id="fechaFin" class="form-control" type="date" min="2016-01-01" max="2022-06-30" />
-            </div>
-
-            <div class="row justify-content-center align-items-center my-5">
-
-                <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-5">
-                    <a class="btn btn-primary d-grid shadow mx-5 mb-4" href="#generarReporte">Generar Reporte</a>
-                </div>
-                
-                <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-5">
-                    <a class="btn btn-primary d-grid shadow mx-5 mb-4" href="#guardarReporte">Guardar Reporte</a>
-                </div>
+                <label class="my-1 px-2 text-secondary" for="fechaFin">Fecha de termino</label>
+                <input id="fechaFin" class="form-control mb-5" name="fFin" type="date" min="2016-01-01" max="2022-06-30"
+                    pattern="\d{4}-\d{2}-\d{2}" />
             </div>
 
         </div>
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+                <div class="d-grid gap-2 my-2">
+                    <button class="btn btn-primary d-grid shadow mx-3 mb-2" type="submit">Generar Gráfica</button>
+                </div>
+            </div>
+        </div>
     </form>
+
+    <div class="row justify-content-center align-items-center ">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+            <div class="d-grid gap-2 my-2">
+                <button class="btn btn-primary d-grid shadow mx-3 mb-3" href="#guardarReporte">Guardar Reporte</button>
+            </div>
+        </div>
+    </div>
 
 </div>
 
