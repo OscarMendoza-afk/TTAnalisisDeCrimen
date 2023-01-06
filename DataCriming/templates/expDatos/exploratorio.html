@@ -12,8 +12,10 @@
     </div>
 
     <div class="row">
-        <div class="justificado my-1" >
-          Con esta herramienta se puede realizar un Análisis Exploratorio de Datos (EDA), con la finalidad de obtener información valiosa acerca del conjunto de datos proporcionado por el protal de datos abiertos de la CDMX según diversos flitros.
+        <div class="justificado my-1">
+            Con esta herramienta se puede realizar un Análisis Exploratorio de Datos (EDA), con la finalidad de obtener
+            información valiosa acerca del conjunto de datos proporcionado por el protal de datos abiertos de la CDMX
+            según diversos flitros.
         </div>
     </div>
 </div>
@@ -24,10 +26,10 @@
             <label for="customRange" class="form-label">Ingrese los siguientes datos para generar un reporte</label>
         </div>
     </div>
-    
-    <div class="row px-3">
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
-            <form>
+
+    <form>
+        <div class="row px-3">
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
                 <div class="form-floating mb-4">
                     <select class="form-select" id="tipoCrimen" aria-label="Floating label select example">
                         <option value="0">Todos</option>
@@ -37,11 +39,9 @@
                     </select>
                     <label for="tipoCrimen">Tipo de crimen</label>
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
-            <form>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
                 <div class="form-floating mb-4">
                     <select class="form-select" id="alcaldia" aria-label="Floating label select example">
                         <option value="0">Todas</option>
@@ -64,11 +64,9 @@
                     </select>
                     <label for="alcaldia">Alcaldia</label>
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
-            <form>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
                 <div class="form-floating mb-4">
                     <select class="form-select" id="tipoCrimen" aria-label="Floating label select example">
                         <option value="0">Ambos</option>
@@ -77,38 +75,41 @@
                     </select>
                     <label for="tipoCrimen">Sexo</label>
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 px-2 py-1">
-            <label class="mb-2 px-2 text-secondary" for="fechaInicio">Fecha de inicio</label>
-            <input id="fechaInicio" class="form-control" type="date" min="2016-01-01" max="2022-06-30"/>
-        </div>
-    
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 px-2 py-1">
-            <label class="mb-2 px-2 text-secondary" for="fechaFin">Fecha de termino</label>
-            <input id="fechaFin" class="form-control" type="date" min="2016-01-01" max="2022-06-30"/>
-        </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 px-2 py-1">
+                <label class="mb-2 px-2 text-secondary" for="fechaInicio">Fecha de inicio</label>
+                <input id="fechaInicio" class="form-control" type="date" min="2016-01-01" max="2022-06-30" />
+            </div>
 
-    </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 px-2 py-1">
+                <label class="mb-2 px-2 text-secondary" for="fechaFin">Fecha de termino</label>
+                <input id="fechaFin" class="form-control" type="date" min="2016-01-01" max="2022-06-30" />
+            </div>
 
-    <div class="row justify-content-center align-items-center my-5">
-        <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-5">
-            <a class="btn btn-primary d-grid shadow mx-5 mb-4" href="#generarReporte">Generar Reporte</a>
+            <div class="row justify-content-center align-items-center my-5">
+
+                <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+                    <a class="btn btn-primary d-grid shadow mx-5 mb-4" href="#generarReporte">Generar Reporte</a>
+                </div>
+                
+                <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+                    <a class="btn btn-primary d-grid shadow mx-5 mb-4" href="#guardarReporte">Guardar Reporte</a>
+                </div>
+            </div>
+
         </div>
-        <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-5">
-            <a class="btn btn-primary d-grid shadow mx-5 mb-4" href="#guardarReporte">Guardar Reporte</a>
-        </div>
-    </div>
+    </form>
+
 </div>
 
 
 <div class="container">
     <div class="row justify-content-center align-items-center my-3">
         <div class="col-12">
-            
+
             {% for i in object_list %}
-                <li> {{ i }} </li>
+            <li> {{ i }} </li>
             {% endfor %}
 
         </div>
@@ -118,7 +119,7 @@
 <div class="container">
     <div class="row justify-content-center align-items-center my-3">
         <div class="col-12">
-            <iframe class="exp" src="{% static 'reporte.html' %}" ></iframe>
+            <iframe class="exp" src="{% static 'reporte.html' %}"></iframe>
         </div>
     </div>
 </div>
