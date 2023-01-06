@@ -21,5 +21,8 @@ urlpatterns = [
     views.TendenciasTemplateView.as_view(),
     name='tendencias'),
 
+    path('grafica',
+    views.chart ,
+    name='chart'),
 
 ]

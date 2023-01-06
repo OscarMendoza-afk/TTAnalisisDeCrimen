@@ -18,7 +18,6 @@ class Delito(models.Model):
     def __str__(self):
         return self.delito + Sep + self.categoria #+ Sep + self.competencia
 
-
 class Fecha(models.Model):
     idfecha = models.AutoField(db_column='idFecha', primary_key=True)  # Field name made lowercase.
     #dia = models.IntegerField(db_column='Dia', blank=True, null=True)  # Field name made lowercase.
@@ -30,6 +29,7 @@ class Fecha(models.Model):
     class Meta:
         managed = False
         db_table = 'Fecha'
+        ordering = ('fecha', )
     
     def __str__(self):
         return str(self.fecha)# + Sep + str(self.hora) #+ Sep + str(self.dia) + Sep + self.mes + Sep + str(self.anio)
@@ -46,7 +46,6 @@ class Geopoint(models.Model):
 
     def __str__(self):
         return str(self.longitud) + Sep + str(self.latitud)
-
 """
 
 class Persona(models.Model):
@@ -62,8 +61,6 @@ class Persona(models.Model):
     
     def __str__(self):
         return self.sexo #+ Sep + str(self.edad)# + Sep + self.tipopersona + Sep + self.calidadjuridica
-
-
 
 class Ubicacion(models.Model):
     idubicacion = models.AutoField(db_column='idUbicacion', primary_key=True)  # Field name made lowercase.
