@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <form method="GET"> {% csrf_token %}
+    <form method="GET" action="{% url 'expDatos_app:report' %}" > {% csrf_token %}
         <div class="row px-3">
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 px-2">
@@ -116,7 +116,7 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-5">
                 <div class="d-grid gap-2 my-2">
-                    <button class="btn btn-primary d-grid shadow mx-3 mb-2" type="submit">Generar Gráfica</button>
+                    <button class="btn btn-primary d-grid shadow mx-3 mb-2" type="submit">Generar Reporte</button>
                 </div>
             </div>
         </div>
@@ -132,7 +132,7 @@
 
 </div>
 
-
+<!--
 <div class="container">
     <div class="row justify-content-center align-items-center my-3">
         <div class="col-12">
@@ -144,11 +144,21 @@
         </div>
     </div>
 </div>
+-->
 
 <div class="container">
     <div class="row justify-content-center align-items-center my-3">
         <div class="col-12">
-            <iframe class="exp" src="{% static 'reporte.html' %}"></iframe>
+        <!--<iframe class="exp" src="{% static 'Reporte.html' %}"></iframe>-->
+
+        
+        {% block content %}
+
+        {{ report|safe }}
+        
+        {% endblock %}
+        
+
         </div>
     </div>
 </div>
