@@ -30,9 +30,9 @@
     <div class="row my-4">
         <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
 
-            <form method="GET"> {% csrf_token %}
+            <form method="GET" action="{% url 'crearMapas_app:mapaC' %}"> {% csrf_token %}
                 <div class="form-floating mb-2">
-                    <select class="form-select" id="tipoMapa" name = 'mapa' aria-label="Floating label select example">
+                    <select class="form-select" id="tipoMapa" name = "mapa" aria-label="Floating label select example">
                         <option value="0">Coropletas</option>
                         <option value="1">Densidad de calor</option>
                         <option value="2">Ubicacion espacial</option>
@@ -119,9 +119,12 @@
             <iframe class="map" src="{% static 'Mapa/Mapa.html' %}"></iframe>
             -->
 
-            {% for i in object_list %}
+
+            {{ mapaC|safe }}
+
+            <!--{% for i in object_list %}
             <li> {{ i }} </li>
-            {% endfor %}
+            {% endfor %}-->
 
         </div>
     </div>

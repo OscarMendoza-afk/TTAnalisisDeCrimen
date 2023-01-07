@@ -6,15 +6,12 @@ import plotly.graph_objects as go
 import plotly.express as px
 import requests
 import json
-from bokeh.io import output_notebook, show, output_file, save
-from bokeh.plotting import figure
-from bokeh.models import GeoJSONDataSource, LinearColorMapper, HoverTool
-from bokeh.palettes import brewer
-
 
 shapefile = '/home/ozkr/Documentos/alcaldías_cdmx/alcaldias_cdmx.shp'
 
 gg = gpd.read_file(shapefile, encoding='utf-8')
+
+poligonos=pd.read_csv(r"/home/ozkr/Documentos/PoligonosCDMX.csv")
 
 gdf = gpd.read_file(shapefile, encoding='utf-8')
 
@@ -55,6 +52,8 @@ gdf=gdf[['cve_mun','geo_shp']]
 gdf=gdf.replace({9:'MILPA ALTA', 14:'BENITO JUAREZ', 5:'GUSTAVO A MADERO', 3:'COYOACAN', 16:'MIGUEL HIDALGO', 8:'LA MAGDALENA CONTRERAS', 11:'TLAHUAC', 2:'AZCAPOTZALCO', 6:'IZTACALCO', 10:'ALVARO OBREGON', 13:'XOCHIMILCO', 17:'VENUSTIANO CARRANZA', 12:'TLALPAN', 4:'CUAJIMALPA DE MORELOS', 15:'CUAUHTEMOC', 7:'IZTAPALAPA' })
 
 gdf=gdf.rename(columns={'cve_mun':'Alcaldia'})
+
+#gdf.to_csv("/home/ozkr/Documentos/PoligonosCDMX.csv", index=False)
 
 dfF=pd.merge(df, gdf, on='Alcaldia')
 
@@ -123,10 +122,10 @@ output_file('Mapa_RM.html')
 save(fig)
 '''
 
-fig = px.choropleth(data_frame=df, 
+fig = px.choropleth(data_frame=dfF, 
                     geojson=d, 
                     locations='Alcaldia', # nombre de la columna del Dataframe
-                    featureidkey='features.properties.nomgeo',  # ruta al campo del archivo GeoJSON con el que se hará la relación (nombre de los estados)
+                    featureidkey='properties.nomgeo',  # ruta al campo del archivo GeoJSON con el que se hará la relación (nombre de los estados)
                     color='NumDelitos', #El color depende de las cantidades
                     color_continuous_scale="burg", #greens
                     #scope="north america"
