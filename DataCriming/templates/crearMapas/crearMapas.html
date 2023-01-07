@@ -33,8 +33,9 @@
             <form method="GET"> {% csrf_token %}
                 <div class="form-floating mb-2">
                     <select class="form-select" id="tipoMapa" name = 'mapa' aria-label="Floating label select example">
-                        <option value="1">Coropletas</option>
-                        <option value="2">Densidad de calor</option>
+                        <option value="0">Coropletas</option>
+                        <option value="1">Densidad de calor</option>
+                        <option value="2">Ubicacion espacial</option>
                         <option value="3">HotSpot 1 (DBSCAN)</option>
                         <option value="4">HotSpot 2 (MEAN SHIFT)</option>
                     </select>

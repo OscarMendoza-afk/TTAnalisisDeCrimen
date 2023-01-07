@@ -60,29 +60,19 @@ def FileExp (request):
     df = pd.DataFrame(list(lista), columns=['dia', 'mes','anio', 'fecha', 'hora', 'delito','calidadjuridica', 'categoria', 'competencia', 'colonia', 'alcaldia','sexo', 'edad', 'tipopersona'])
     #'idCarpeta', 'Dia', 'Mes', 'Año', 'Fecha', 'Hora', 'Delito','calidadjuridica', 'Categoria', 'Competencia', 'Colonia', 'Alcaldia','Sexo', 'Edad', 'TipoPersona', 'longitud', 'latitud'
 
-    #dfE = pd.DataFrame(lista)
-    
-    #dfE['index'] = dfE.index
-    #dfE=dfE.reset_index()
-    #dfE=dfE[[0]]
-    #dfE=dfE.rename(columns={0 :'Datos'})
-    #dfS=dfE.Datos.str.split(pat='_',expand=True)
-
-    #q = lista.values()
-    #dfE = pd.DataFrame.from_records(q)
-
-    #dfE = pd.read_csv(r"/home/ozkr/Documentos/alcaldias.csv" ) 
-
-    #print(df.columns)
-    #print(df.head)
-
     profile = ProfileReport(df, title="Analisis EDA", explorative=True)
+    report = profile.to_html()
+    
+    #nav = '<button type=button class="navbar-toggle collapsed" data-toggle=collapse data-target=#navbar aria-expanded=false aria-controls=navbar><span class=sr-only>Toggle navigation</span><span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button><a class="navbar-brand anchor" href=#top>Analisis EDA</a></div><div id=navbar class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-right"><li><a class=anchor href=#overview>Overview</a></li><li><a class=anchor href=#variables-dropdown>Variables</a></li><li><a class=anchor href=#interactions>Interactions</a></li><li><a class=anchor href=#correlations>Correlations</a></li><li><a class=anchor href=#missing>Missing values</a></li><li><a class=anchor href=#sample>Sample</a></li></ul></div></div></nav>'
 
-    report = profile.to_html() 
+    LeftstrReport = str(report).rstrip('<nav class="navbar navbar-default navbar-fixed-top"><div class=container-fluid><div class=navbar-header>')
+
+    RightstrReport = str(report).lstrip('</div></div></nav>')
+
+
+    report = LeftstrReport + RightstrReport
 
     context = {'report': report}
-
-    print(report)
 
     return render(request, 'expDatos/exploratorio.html',context)
 
