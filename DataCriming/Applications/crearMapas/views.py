@@ -13,10 +13,12 @@ from django.urls import reverse_lazy
 
 #importar librerias necesarias
 
+from dash import Dash, dcc, html, Input, Output
 import geopandas as gpd
 import pandas as pd
 import plotly.express as px
 import json
+from django_plotly_dash import DjangoDash
 
 class CrearMapasTemplateView(ListView):
     template_name = "crearMapas/crearMapas.html"
@@ -89,8 +91,9 @@ def mapaC (request):
                         locations='alcaldia', # nombre de la columna del Dataframe
                         featureidkey='properties.nomgeo',  # ruta al campo del archivo GeoJSON con el que se hará la relación (nombre de los estados)
                         color='NumDelitos', #El color depende de las cantidades
-                        color_continuous_scale="blues", #greens
-                        #scope="north america"
+                        color_continuous_scale="blues",
+                        width=1000, 
+                        height=600
                     )
         fig.update_geos(showcountries=True, showcoastlines=True, showland=True, fitbounds="locations")
 
@@ -112,9 +115,9 @@ def mapaC (request):
             )]
         )
 
-    elif mapa == '1':
+    elif mapa == '1': #Mapa de calor
 
-        df['Info'] = '<br>Delito:' + df['delito'].astype(str) + '<br> Año:' + df['fecha'].astype(str)
+        df['Info'] = '<br>Delito:' + df['delito'].astype(str) + '<br>Fecha:' + df['fecha'].astype(str)
 
         fig = px.density_mapbox(df, lon='longitud', lat='latitud',  radius=10,
                         title="Mapa de calor de",
@@ -122,13 +125,55 @@ def mapaC (request):
                         center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=9,                        
                         hover_name="alcaldia",
                         hover_data=["Info"],
-                        mapbox_style="carto-positron")
+                        mapbox_style="carto-positron",
+                        height=600)
+                        
+        fig.update_layout(mapbox_style="open-street-map")
+        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
     
-    elif mapa == '2':
+    elif mapa == '2': #puntos
 
-        print("puntual")
+        df['Info'] = '<br>Delito:' + df['delito'].astype(str) + '<br>Fecha:' + df['fecha'].astype(str)
+        fig = px.scatter_mapbox(df, lon='longitud', lat='latitud', hover_name="alcaldia", hover_data=["Info"],center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=10,
+                        color_discrete_sequence=["blue"], height=600)
+        fig.update_layout(mapbox_style="open-street-map")
+        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
-    elif mapa == '3':
+    elif mapa == '3': 
+
+        app = DjangoDash('hotspotuno')
+
+
+        layout= app.layout = html.Div([
+            html.H4("Interactive color mode option with Dash"),
+            html.P("Color mode:"),
+            dcc.RadioItems(
+                id='discrete-color-x-color-mode', 
+                value='capa', 
+                options=['discrete', 'continuous'],
+            ),
+            dcc.Graph(id="discrete-color-x-graph"),
+        ])
+
+
+        @app.callback(
+            Output("discrete-color-x-graph", "figure"), 
+            Input("discrete-color-x-color-mode", "value"))
+
+
+        def generate_chart(mode):
+            if mode == 'discrete':
+                x=[1, 2, 3, 4] 
+                y=[1, 4, 9, 16]
+            else:
+                x=[1, 2, 5, 4] 
+                y=[1, 6, 10, 16]
+
+            fig = px.line(x, y, title=r'$\alpha_{1c} = 352 \pm 11 \text{ km s}^{-1}$')
+            
+            return {'data': [fig], 'layout': layout}
+
+        
 
         print("HotSpot1")
 
@@ -136,13 +181,6 @@ def mapaC (request):
 
         print("HotSpot1")
 
-
-
-
-            
-
-
-    
 
     mapaC = fig.to_html()
 
