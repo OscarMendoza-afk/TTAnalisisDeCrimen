@@ -33,3 +33,4 @@ class ExploratorioTemplateView(ListView):
         return lista
 
 
+

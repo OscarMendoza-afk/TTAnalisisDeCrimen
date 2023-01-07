@@ -27,9 +27,9 @@ class CrearMapasTemplateView(ListView):
         if fecha2 == '': fecha2 = '2000-01-01'
         
         lista = Hechoscrimen.objects.filter(
-            id_delito__categoria = categoria,
-            id_ubicacion__alcaldia = alcaldia,
-            id_persona__sexo = sexo,
+            id_delito__categoria__icontains = categoria,
+            id_ubicacion__alcaldia__icontains = alcaldia,
+            id_persona__sexo__icontains = sexo,
             id_fecha__fecha__range = (fecha1, fecha2)
         )
         return lista

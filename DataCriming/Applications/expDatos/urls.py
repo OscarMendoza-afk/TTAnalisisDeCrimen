@@ -8,4 +8,5 @@ urlpatterns = [
     path('analisis_exploratorio/',
     views.ExploratorioTemplateView.as_view(),
     name='exploratorio'),
+
 ]
