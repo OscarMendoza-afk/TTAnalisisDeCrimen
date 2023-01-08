@@ -140,42 +140,12 @@ def mapaC (request):
         fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
     elif mapa == '3': 
-
-        app = DjangoDash('hotspotuno')
-
-
-        layout= app.layout = html.Div([
-            html.H4("Interactive color mode option with Dash"),
-            html.P("Color mode:"),
-            dcc.RadioItems(
-                id='discrete-color-x-color-mode', 
-                value='capa', 
-                options=['discrete', 'continuous'],
-            ),
-            dcc.Graph(id="discrete-color-x-graph"),
-        ])
-
-
-        @app.callback(
-            Output("discrete-color-x-graph", "figure"), 
-            Input("discrete-color-x-color-mode", "value"))
-
-
-        def generate_chart(mode):
-            if mode == 'discrete':
-                x=[1, 2, 3, 4] 
-                y=[1, 4, 9, 16]
-            else:
-                x=[1, 2, 5, 4] 
-                y=[1, 6, 10, 16]
-
-            fig = px.line(x, y, title=r'$\alpha_{1c} = 352 \pm 11 \text{ km s}^{-1}$')
-            
-            return {'data': [fig], 'layout': layout}
-
+   
+        fig = px.scatter_geo(df, locations="aldaldia", color="continent",
+                            hover_name="delito", size="pop",
+                            animation_frame="fecha",
+                            projection="natural earth")
         
-
-        print("HotSpot1")
 
     elif mapa == '4':
 
