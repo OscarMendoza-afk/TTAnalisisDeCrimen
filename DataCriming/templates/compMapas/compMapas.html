@@ -8,54 +8,205 @@
 
 <div class="container">
     <div class="row">
-        <h1 class="text-center my-5">Análisis Geoespacial Comparativo del Crimen</h1>
+        <h1 class="text-center my-4">Análisis Geoespacial Comparativo de Datos del Crimen</h1>
+    </div>
+
+    <div class="row">
+        <div class="justificado my-1">
+            Con esta herramienta se puede realizar un Análisis Geoespacial con los filtros anteriores, pero comparando visualmente 2 crimenes en el mismo mapa.
+        </div>
     </div>
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
-
-            <form>
-                <div class="form-floating mb-4">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option value="1">Rayas</option>
-                        <option value="2">Pastel</option>
-                        <option value="3">Lineas</option>
-                    </select>
-                    <label for="floatingSelect">Tipo de visualizacion</label>
-                </div>
-
-                <div class="form-floating mb-4">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option value="1">Robo</option>
-                        <option value="2">Homicidio</option>
-                        <option value="3">Violacion</option>
-                    </select>
-                    <label for="floatingSelect">Tipo de crimen</label>
-                </div>
-
-                <div class="form-floating mb-4">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option value="1">Iztapaluca</option>
-                        <option value="2">Gustavo A. Madero</option>
-                        <option value="3">Azcapotzalco</option>
-                    </select>
-                    <label for="floatingSelect">Alcaldia</label>
-                </div>
-
-                <label for="customRange" class="form-label">Año de inicio de estudio:</label>
-                <input type="range" class="form-range px-2" min="2016" max="2022" id="customRange" />
-                <img src="{% static 'img/ImageAnios.png' %}" class="img-fluid  mb-4" alt="ImgAnios">
-
-                <label for="customRange" class="form-label">Año de fin de estudio:</label>
-                <input type="range" class="form-range px-2" min="2016" max="2022" id="customRange" />
-                <img src="{% static 'img/ImageAnios.png' %}" class="img-fluid  mb-4" alt="ImgAnios">
-
-            </form>
+<!--
+    <div class="row my-3">
+        <div class="col-12">
+            <label for="customRange" class="form-label">Ingrese los siguientes datos para generar un mapa</label>
         </div>
+    </div>
+-->
+    <form method="GET" action="{% url 'compMapas_app:CompMapa' %}"> {% csrf_token %}
+        <div class="row justify-content-center my-4">
+        
+            <!-- Formulario 1 -->
 
-        <div class="col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9"></div>
+            <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+
+                <div class="text-center lh-lg fw-semibold mb-3">
+                    Datos del Mapa 1 
+                </div>
+
+                <div class="form-floating mb-2">
+                    <select class="form-select" id="tipoDelito1" name = "categoria1" aria-label="Floating label select example">
+                        <option value="">Todos</option>
+                        <option value="DELITO DE BAJO IMPACTO">Delito de bajo impacto</option>
+                        <option value="HOMICIDIO DOLOSO">Homicidio doloso</option>
+                        <option value="HECHO NO DELICTIVO">Hecho no delictivo</option>
+                        <option value="LESIONES DOLOSAS POR DISPARO DE ARMA DE FUEGO">Lesiones dolosas por disparo de arma de fuego</option>
+                        <option value="ROBO A CASA HABITACIÓN CON VIOLENCIA">Robo a casa habitación</option>
+                        <option value="ROBO A CUENTAHABIENTE SALIENDO DEL CAJERO CON VIOLENCIA">Robo a cuentahabiente saliendo del cajero</option>
+                        <option value="ROBO A NEGOCIO CON VIOLENCIA">Robo a negocio</option>
+                        <option value="ROBO A PASAJERO A BORDO DE MICROBUS CON Y SIN VIOLENCIA">Robo a pasajero a bordo de microbús</option>
+                        <option value="ROBO A PASAJERO A BORDO DE TAXI CON VIOLENCIA">Robo a pasajero a bordo de taxi</option>
+                        <option value="ROBO A PASAJERO A BORDO DEL METRO CON Y SIN VIOLENCIA">Robo a pasajero a bordo del metro</option>
+                        <option value="ROBO A REPARTIDOR CON Y SIN VIOLENCIA">Robo a repartidor</option>
+                        <option value="ROBO A TRANSEUNTE EN VÍA PÚBLICA CON Y SIN VIOLENCIA">Robo a transeunte en vía pública</option>
+                        <option value="ROBO A TRANSPORTISTA CON Y SIN VIOLENCIA">Robo a transportista</option>
+                        <option value="ROBO DE VEHÍCULO CON Y SIN VIOLENCIA">Robo de vehículo</option>
+                        <option value="SECUESTRO">Secuestro</option>
+                        <option value="VIOLACIÓN">Violación</option>
+                    </select>
+                    <label for="tipoDelito">Tipo de crimen</label>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <select class="form-select" id="alcaldia1" name = "alcaldia1" aria-label="Floating label select example">
+                        <option value="">Todas</option>
+                        <option value="AZCAPOTZALCO">Azcapotzalco</option>
+                        <option value="ALVARO OBREGON">Álvaro Obregón</option>
+                        <option value="BENITO JUAREZ">Benito Juárez</option>
+                        <option value="COYOACAN">Coyoacán</option>
+                        <option value="CUAJIMALPA DE MORELOS">Cuajimalpa de Morelos</option>
+                        <option value="CUAUHTEMOC">Cuauhtémoc</option>
+                        <option value="GUSTAVO A MADERO">Gustavo A. Madero</option>
+                        <option value="IZTACALCO">Iztacalco</option>
+                        <option value="IZTAPALAPA">Iztapalapa</option>
+                        <option value="LA MAGDALENA CONTRERAS">La Magdalena Contreras</option>
+                        <option value="MIGUEL HIDALGO">Miguel Hidalgo</option>
+                        <option value="MILPA ALTA">Milpa Alta</option>
+                        <option value="TLALPAN">Tlalpan</option>
+                        <option value="TLAHUAC">Tláhuac</option>
+                        <option value="VENUSTIANO CARRANZA">Venustiano Carranza</option>
+                        <option value="XOCHIMILCO">Xochimilco</option>
+                    </select>
+                    <label for="alcaldia">Alcaldia</label>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <select class="form-select" id="tipoSexo1" name = "sexo1" aria-label="Floating label select example">
+                        <option value="">Ambos</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Masculino">Masculino</option>
+                    </select>
+                    <label for="tipoSexo">Sexo</label>
+                </div>
+
+                <div>
+                    <label class="mb-1 px-2 text-secondary" for="fechaInicio">Fecha de inicio</label>
+                    <input id="fechaInicio1" class="form-control mb-2" name = "fInicio1" type="date" min="2016-01-01" max="2022-06-30" pattern="\d{4}-\d{2}-\d{2}"/>
+    
+                    <label class="my-1 px-2 text-secondary" for="fechaFin">Fecha de termino</label>
+                    <input id="fechaFin1" class="form-control mb-3" name = "fFin1" type="date" min="2016-01-01" max="2022-06-30" pattern="\d{4}-\d{2}-\d{2}"/>
+                </div>
+            </div>
+
+            <!-- Espacio vacio -->
+            <div class="col-0 col-sm-0 col-md-1 col-lg-1 col-xl-1">
+            </div>
+
+            <!-- Formulario 2 -->
+
+            <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+
+                <div class="text-center lh-lg fw-semibold mb-3">
+                    Datos del Mapa 2 
+                </div>
+
+                <div class="form-floating mb-2">
+                    <select class="form-select" id="tipoDelito1" name = "categoria2" aria-label="Floating label select example">
+                        <option value="">Todos</option>
+                        <option value="DELITO DE BAJO IMPACTO">Delito de bajo impacto</option>
+                        <option value="HOMICIDIO DOLOSO">Homicidio doloso</option>
+                        <option value="HECHO NO DELICTIVO">Hecho no delictivo</option>
+                        <option value="LESIONES DOLOSAS POR DISPARO DE ARMA DE FUEGO">Lesiones dolosas por disparo de arma de fuego</option>
+                        <option value="ROBO A CASA HABITACIÓN CON VIOLENCIA">Robo a casa habitación</option>
+                        <option value="ROBO A CUENTAHABIENTE SALIENDO DEL CAJERO CON VIOLENCIA">Robo a cuentahabiente saliendo del cajero</option>
+                        <option value="ROBO A NEGOCIO CON VIOLENCIA">Robo a negocio</option>
+                        <option value="ROBO A PASAJERO A BORDO DE MICROBUS CON Y SIN VIOLENCIA">Robo a pasajero a bordo de microbús</option>
+                        <option value="ROBO A PASAJERO A BORDO DE TAXI CON VIOLENCIA">Robo a pasajero a bordo de taxi</option>
+                        <option value="ROBO A PASAJERO A BORDO DEL METRO CON Y SIN VIOLENCIA">Robo a pasajero a bordo del metro</option>
+                        <option value="ROBO A REPARTIDOR CON Y SIN VIOLENCIA">Robo a repartidor</option>
+                        <option value="ROBO A TRANSEUNTE EN VÍA PÚBLICA CON Y SIN VIOLENCIA">Robo a transeunte en vía pública</option>
+                        <option value="ROBO A TRANSPORTISTA CON Y SIN VIOLENCIA">Robo a transportista</option>
+                        <option value="ROBO DE VEHÍCULO CON Y SIN VIOLENCIA">Robo de vehículo</option>
+                        <option value="SECUESTRO">Secuestro</option>
+                        <option value="VIOLACIÓN">Violación</option>
+                    </select>
+                    <label for="tipoDelito">Tipo de crimen</label>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <select class="form-select" id="alcaldia1" name = "alcaldia2" aria-label="Floating label select example">
+                        <option value="">Todas</option>
+                        <option value="AZCAPOTZALCO">Azcapotzalco</option>
+                        <option value="ALVARO OBREGON">Álvaro Obregón</option>
+                        <option value="BENITO JUAREZ">Benito Juárez</option>
+                        <option value="COYOACAN">Coyoacán</option>
+                        <option value="CUAJIMALPA DE MORELOS">Cuajimalpa de Morelos</option>
+                        <option value="CUAUHTEMOC">Cuauhtémoc</option>
+                        <option value="GUSTAVO A MADERO">Gustavo A. Madero</option>
+                        <option value="IZTACALCO">Iztacalco</option>
+                        <option value="IZTAPALAPA">Iztapalapa</option>
+                        <option value="LA MAGDALENA CONTRERAS">La Magdalena Contreras</option>
+                        <option value="MIGUEL HIDALGO">Miguel Hidalgo</option>
+                        <option value="MILPA ALTA">Milpa Alta</option>
+                        <option value="TLALPAN">Tlalpan</option>
+                        <option value="TLAHUAC">Tláhuac</option>
+                        <option value="VENUSTIANO CARRANZA">Venustiano Carranza</option>
+                        <option value="XOCHIMILCO">Xochimilco</option>
+                    </select>
+                    <label for="alcaldia">Alcaldia</label>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <select class="form-select" id="tipoSexo1" name = "sexo2" aria-label="Floating label select example">
+                        <option value="">Ambos</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Masculino">Masculino</option>
+                    </select>
+                    <label for="tipoSexo">Sexo</label>
+                </div>
+
+                <div>
+                    <label class="mb-1 px-2 text-secondary" for="fechaInicio">Fecha de inicio</label>
+                    <input id="fechaInicio1" class="form-control mb-2" name = "fInicio2" type="date" min="2016-01-01" max="2022-06-30" pattern="\d{4}-\d{2}-\d{2}"/>
+    
+                    <label class="my-1 px-2 text-secondary" for="fechaFin">Fecha de termino</label>
+                    <input id="fechaFin1" class="form-control mb-3" name = "fFin2" type="date" min="2016-01-01" max="2022-06-30" pattern="\d{4}-\d{2}-\d{2}"/>
+                </div>
+            </div>
+
+            <!-- Botonazo!!!! -->
+            <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 my-4">
+
+                <div class="form-floating mb-2">
+                    <select class="form-select" id="tipoMapa" name = "mapa" aria-label="Floating label select example">
+                        <option value="1">Densidad de calor</option>
+                        <option value="2">Ubicacion espacial</option>
+                        <option value="3">HotSpot 1 (DBSCAN)</option>
+                        <option value="4">HotSpot 2 (MEAN SHIFT)</option>
+                    </select>
+                    <label for="tipoMapa">Tipo de mapa</label>
+                </div>
+
+                <div class="d-grid gap-2 my-4">
+                    <button class="btn btn-primary d-grid shadow mx-3 mb-3" type="submit">Generar Mapa compartido</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center align-items-center my-3">
+        <div class="col-12">
+
+        <!-- Aqui va el mapa
+
+            {{ mapaC|safe }} -->
+        
+        </div>
     </div>
 </div>
 

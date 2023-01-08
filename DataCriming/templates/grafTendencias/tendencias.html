@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row my-4">
         <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
 
             <form method="GET" action="{% url 'grafTendencias_app:chart' %}"> {% csrf_token %}
@@ -100,7 +100,7 @@
                     <input id="fechaInicio" class="form-control mb-2" name = "fInicio" type="date" min="2016-01-01" max="2022-06-30" pattern="\d{4}-\d{2}-\d{2}"/>
     
                     <label class="my-1 px-2 text-secondary" for="fechaFin">Fecha de termino</label>
-                    <input id="fechaFin" class="form-control mb-3" name = "fFin" type="date" min="2016-01-01" max="2022-06-30" pattern="\d{4}-\d{2}-\d{2}"/>
+                    <input id="fechaFin" class="form-control mb-5" name = "fFin" type="date" min="2016-01-01" max="2022-06-30" pattern="\d{4}-\d{2}-\d{2}"/>
                 </div>
                 
                 <div class="d-grid gap-2 my-4">

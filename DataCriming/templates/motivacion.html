@@ -64,19 +64,19 @@
 
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              Desarrollar un prototipo de software para procesar datos de delitos de alto impacto en la Ciudad de México para identificar zonas de concentración de crímenes, patrones de comportamiento y tendencias en tiempo y en espacio, empleando técnicas data mining y de sistemas de información geográfica.</li>
+              Desarrollar un prototipo de software para procesar datos de delitos en la Ciudad de México para identificar zonas de concentración de crímenes, patrones de comportamiento y tendencias en tiempo y en espacio, empleando técnicas data mining y de sistemas de información geográfica.</li>
           </ul>
             
           <h3 class="mb-2 mt-5">Especificos</h3>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              • Seleccionar y comprender las fuentes de datos de crímenes en las zonas de estudio.</li>
+              • Seleccionar y comprender las fuentes de datos de crímenes en la Ciudad de México.</li>
             <li class="list-group-item">
-              •	Definir una metodología de data mining para caracterizar en el tiempo y el espacio los conjuntos de datos de crimen de las zonas de estudio.</li>
+              •	Definir una metodología de data mining para caracterizar en el tiempo y el espacio los conjuntos de datos de crimen de la zona de estudio.</li>
             <li class="list-group-item">
               •	Acoplar a la metodología mecanismos de análisis espacio temporal que apliquen para el procesamiento de datos de crímenes.</li>
             <li class="list-group-item">
-              •	Estudiar y definir posibles algoritmos específicos para el análisis de datos de crímenes.</li>
+              •	Estudiar y definir los algoritmos específicos para el análisis de datos de crímenes, para este caso seran "DBSCAN" y "Mean shift".</li>
             <li class="list-group-item">
               •	Explorar mecanismos para identificar y visualizar zonas de concentración o densidad de crímenes de alto impacto de acuerdo con la región de estudio.</li>
             <li class="list-group-item">
@@ -107,18 +107,21 @@
             class="stretched-link">vinculo</a>
           </p>
           <p>
-            Esta base de datos contiene la información actualizada de las víctimas de los delitos en las carpetas de investigación de la Fiscalía General de Justicia (FGJ) de la Ciudad de México a partir de enero de 2016 hasta marzo de 2022.
+            Esta base de datos contiene la información actualizada de las víctimas de los delitos en las carpetas de investigación de la Fiscalía General de Justicia (FGJ) de la Ciudad de México a partir de enero de 2018 hasta agosto de 2022.
           </p>
           <p>
-            Cabe recalcar que la base de datos con la que funciona este sistema es una integración de la versión anterior a la actualización ocurrida en agosto de 2022 y la nueva versión que contempla datos desde enero de 2019, esto con la finalidad de tener la mayor cantidad de datos disponibles y mantener el sistema actualizado.
+            Cabe recalcar que la base de datos con la que funciona este sistema es una transformación de la obtenida por la pagina de Datos Abiertos de la CDMX, debido a que los datos fueron pre procesados para obtener una base de datos histórica, limpia y sin ruido o anomalías. Siempre tratando de conservar la mayor cantidad de registros posibles.
           </p>
+
+          <img src="{% static 'img/logo_Tecnologias.png' %}" class="img-fluid my-3" alt="ImgBaseDatos">
+
         </div>
       </div>
       
       <div class="collapse p-3" id="MenuMotivacion-6">
         <div class="card card-body opacity-75">
           <p>
-            Las principales tecnologías utilizadas para el desarrollo de este proyecto fueron:
+            Las principales tecnologías y paquetes utilizados para el desarrollo de este proyecto fueron:
           </p>
           <div class="row justify-content-center">
             <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4 text-center">
@@ -126,7 +129,7 @@
                 <li class="list-group-item">
                   Django</li>
                 <li class="list-group-item">
-                  SQL Server</li>
+                  MySQL</li>
                 <li class="list-group-item">
                   Python</li>
                 <li class="list-group-item">
@@ -135,6 +138,10 @@
                   CSS3</li>
                 <li class="list-group-item">
                   Bootstrap</li>
+                <li class="list-group-item">
+                  Plotly</li>
+                <li class="list-group-item">
+                  Pandas-Profiling</li>
                 <li class="list-group-item">
                   Jupyter Lab</li>
                 <li class="list-group-item">
