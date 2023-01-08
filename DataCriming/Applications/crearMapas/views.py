@@ -65,7 +65,7 @@ def mapaC (request):
 
     df = pd.DataFrame(list(lista), columns=['delito','fecha', 'hora','categoria', 'colonia', 'alcaldia','longitud','latitud'])
 
-    with open('/home/zaranda/Documentos/AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
+    with open('/home/ozkr/Documentos/AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
 
     #print(poligonos)
 
@@ -107,7 +107,7 @@ def mapaC (request):
                 y=-0.1,
                 xref='paper',
                 yref='paper',
-                text='Fuente: Portal de Datos Abiertos México',
+                text='Relizado con datos de: Portal de Datos Abiertos de la CDMX',
                 showarrow = False
             )]
         )
