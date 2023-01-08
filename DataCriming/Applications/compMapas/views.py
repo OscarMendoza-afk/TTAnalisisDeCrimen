@@ -16,6 +16,7 @@ import pandas as pd
 import plotly.express as px
 import json
 from django_plotly_dash import DjangoDash
+import plotly.graph_objects as go
 
 class CompararMapasTemplateView(ListView):
     template_name = "compMapas/compMapas.html"
@@ -80,84 +81,137 @@ def CompMapa (request):
         id_fecha__fecha__range = (fechaI2, fechaF2)
     ).values_list('id_delito__delito','id_fecha__fecha','id_fecha__hora','id_delito__categoria','id_ubicacion__colonia','id_ubicacion__alcaldia','id_geopoint__longitud','id_geopoint__latitud')
     
-
+    df = pd.DataFrame(list(lista1), columns=['delito','fecha', 'hora','categoria', 'colonia', 'alcaldia','longitud','latitud'])
     dfm1 = pd.DataFrame(list(lista1), columns=['delito','fecha', 'hora','categoria', 'colonia', 'alcaldia','longitud','latitud'])
     dfm2 = pd.DataFrame(list(lista2), columns=['delito','fecha', 'hora','categoria', 'colonia', 'alcaldia','longitud','latitud'])
 
-    """
-    with open('/home/zaranda/Documentos/AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
+    
+    with open('/home/ozkr/Documentos/AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
 
-
+    locs=df['alcaldia']
     #print(poligonos)
 
-    if mapa == '0': #Grfica de Coropletas
+    if mapa == '1': #Mapa calor
 
-        dfA=df["alcaldia"].value_counts()
+        dfm1['Info'] = '<br>Delito:' + dfm1['delito'].astype(str) + '<br>Fecha:' + dfm1['fecha'].astype(str)
 
-        dfA=dfA.to_frame()
+        # Generamos la figura del mapa
+        fig = go.Figure()
+        # Recorremos los datos del archivo csv y extraemos sus coordenadas,
+        # etiquetas a mostrar y especificamos características del marcador
+        for i in dfm1:
+            fig.add_trace(go.Scattergeo(
+            lon = dfm1['longitud'],
+            lat = dfm1['latitud'],
+            text = dfm1['categoria'],
+            marker = dict(
+            color = 'Blue',
+            line_color='black',
+            line_width=0.3,
+            sizemode = 'area'
+        )))
 
-        dfA['index'] = dfA.index
-        dfA=dfA.reset_index()
-        dfA=dfA[['index','alcaldia']]
-
-        dfA=dfA.rename(columns={'index' :'alcaldia', 'alcaldia' :'NumDelitos'})
-
-        #dfF=pd.merge(dfA, gdf, on='Alcaldia')
-
-        fig = px.choropleth(data_frame=dfA, 
-                        geojson=poligonos, 
-                        locations='alcaldia', # nombre de la columna del Dataframe
-                        featureidkey='properties.nomgeo',  # ruta al campo del archivo GeoJSON con el que se hará la relación (nombre de los estados)
-                        color='NumDelitos', #El color depende de las cantidades
-                        color_continuous_scale="blues",
-                        width=1000, 
-                        height=600
-                    )
-        fig.update_geos(showcountries=True, showcoastlines=True, showland=True, fitbounds="locations")
+        for i in dfm2:
+            fig.add_trace(go.Scattergeo(
+            lon = dfm2['longitud'],
+            lat = dfm2['latitud'],
+            text = dfm2['categoria'],
+            marker = dict(
+            color = 'Red',
+            line_color='black',
+            line_width=0.3,
+            sizemode = 'area'
+        )))
 
         fig.update_layout(
-            title_text = 'Mapa de Coropletas de Alcaldias más Delictivas',
-            font=dict(
-                #family="Courier New, monospace",
-                family="Ubuntu",
-                size=18,
-                color="#7f7f7f"
-            ),
-            annotations = [dict(
-                x=0.55,
-                y=-0.1,
-                xref='paper',
-                yref='paper',
-                text='Fuente: Portal de Datos Abiertos México',
-                showarrow = False
-            )]
-        )
 
-    elif mapa == '1': #Mapa de calor
+            title_text = 'Población en las ciudades del mundo, año 2025',
+            mapbox_style="carto-positron",
+            showlegend = False,
+            autosize=True,
+            height=700,
+            geo=dict(
+            center=dict(
+            lon=-99.1374477062327,
+            lat=19.402765630374645),
+            projection_scale=300,
+            showsubunits = True,
+            showland = True,
+            showcountries = True
+            ))
 
-        df['Info'] = '<br>Delito:' + df['delito'].astype(str) + '<br>Fecha:' + df['fecha'].astype(str)
 
-        fig = px.density_mapbox(df, lon='longitud', lat='latitud',  radius=10,
-                        title="Mapa de calor de",
-                        color_continuous_scale="inferno",
-                        center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=9,                        
-                        hover_name="alcaldia",
-                        hover_data=["Info"],
-                        mapbox_style="carto-positron",
-                        height=600)
-                        
-        fig.update_layout(mapbox_style="open-street-map")
-        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-    
-    elif mapa == '2': #puntos
+    elif mapa == '2': #Mapa puntos
 
-        df['Info'] = '<br>Delito:' + df['delito'].astype(str) + '<br>Fecha:' + df['fecha'].astype(str)
-        fig = px.scatter_mapbox(df, lon='longitud', lat='latitud', hover_name="alcaldia", hover_data=["Info"],center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=10,
-                        color_discrete_sequence=["blue"], height=600)
-        fig.update_layout(mapbox_style="open-street-map")
-        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+            dfFreq = df.groupby(['delito']).size().to_frame().reset_index()
+            dfFreq.columns = ['delito', 'ocurrencia']
 
-    elif mapa == '3': 
+            locs=df['alcaldia']
+
+            fig=go.Figure()
+
+
+            fig.add_trace(go.Choroplethmapbox(
+                                geojson=poligonos, 
+                                locations=locs, # nombre de la columna del Dataframe
+                                featureidkey='properties.nomgeo',
+                                z=dfFreq['ocurrencia'],
+                                colorscale='blues'))
+
+            for i in dfm1:
+                fig.add_trace(go.Scattergeo(
+                lon = dfm1['longitud'],
+                lat = dfm1['latitud'],
+                text = dfm1['categoria'],
+                marker = dict(
+                color = 'Blue',
+                line_color='black',
+                line_width=0.3,
+                sizemode = 'area'
+                )))
+
+            for i in dfm2:
+                fig.add_trace(go.Scattergeo(
+                lon = dfm2['longitud'],
+                lat = dfm2['latitud'],
+                text = dfm2['categoria'],
+                marker = dict(
+                color = 'Red',
+                line_color='black',
+                line_width=0.3,
+                sizemode = 'area'
+                )))
+
+            """
+            fig.update_layout(
+
+            title_text = 'Población en las ciudades del mundo, año 2025',
+            mapbox_style="carto-positron",
+            showlegend = False,
+            autosize=True,
+            height=700,
+            geo=dict(
+            center=dict(
+            lon=-99.1374477062327,
+            lat=19.402765630374645),
+            projection_scale=300,
+            showsubunits = True,
+            showland = True,
+            showcountries = True
+            ))
+            """
+
+            
+            fig.update_layout(mapbox_style="carto-positron",
+                                    mapbox_zoom=3.4,
+                                    mapbox_center = {"lat": 19.402765630374645, "lon": -99.1374477062327})
+            
+
+    elif mapa == '3': #puntos
+
+        print("DBscan")
+
+    elif mapa == '4': 
 
         app = DjangoDash('hotspotuno')
 
@@ -195,16 +249,13 @@ def CompMapa (request):
 
         print("HotSpot1")
 
-    elif mapa == '4':
-
-        print("HotSpot1")
-
 
     mapaC = fig.to_html()
 
     context = {'mapaC': mapaC}
-    return render(request, 'compMapas/compMapas.html', context)
-    """
+    
+    return render(request, 'compMapas/compMapas.html', context,)
+ 
 
     
 
