@@ -8,4 +8,10 @@ urlpatterns = [
     path('creador_mapas/',
     views.CrearMapasTemplateView.as_view(),
     name='crearMapas'),
+
+    path('mapa',
+    views.mapaC ,
+    name='mapaC'),
+
 ]
+
