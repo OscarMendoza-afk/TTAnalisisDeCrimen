@@ -7,12 +7,9 @@ from django.views.generic import (
     TemplateView
     )
 from .models import *
-
 from django.urls import reverse_lazy
 
-
 #importar librerias necesarias
-
 from dash import Dash, dcc, html, Input, Output
 import geopandas as gpd
 import pandas as pd
@@ -23,9 +20,9 @@ from django_plotly_dash import DjangoDash
 class CrearMapasTemplateView(ListView):
     template_name = "crearMapas/crearMapas.html"
     context_object_name = "valores"
-
+    
     def get_queryset(self):
-
+        """
         mapa = self.request.GET.get('mapa', '')
         categoria = self.request.GET.get('categoria', '')
         alcaldia = self.request.GET.get('alcaldia', '')
@@ -43,6 +40,8 @@ class CrearMapasTemplateView(ListView):
             id_fecha__fecha__range = (fecha1, fecha2)
         )
         return lista
+        """
+        return []
 
 def mapaC (request):
 
@@ -66,11 +65,9 @@ def mapaC (request):
 
     df = pd.DataFrame(list(lista), columns=['delito','fecha', 'hora','categoria', 'colonia', 'alcaldia','longitud','latitud'])
 
-    with open('/home/ozkr/Documentos/AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
+    with open('/home/zaranda/Documentos/AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
 
     #print(poligonos)
-
-    
 
     if mapa == '0': #Grfica de Coropletas
 

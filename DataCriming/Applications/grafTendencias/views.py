@@ -28,8 +28,8 @@ class TendenciasTemplateView(ListView):
     context_object_name = "valores"
 
     def get_queryset(self):
-
-        grafica = self.request.GET.get('grafica', '')
+        """
+        mapa = self.request.GET.get('mapa', '')
         categoria = self.request.GET.get('categoria', '')
         alcaldia = self.request.GET.get('alcaldia', '')
         sexo =    self.request.GET.get('sexo', '')
@@ -46,6 +46,8 @@ class TendenciasTemplateView(ListView):
             id_fecha__fecha__range = (fecha1, fecha2)
         )
         return lista
+        """
+        return []
 
 def chart (request):
         

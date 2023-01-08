@@ -102,15 +102,20 @@
                     <input id="fechaInicio" class="form-control mb-2" name = "fInicio" type="date" min="2016-01-01" max="2022-06-30" pattern="\d{4}-\d{2}-\d{2}"/>
     
                     <label class="my-1 px-2 text-secondary" for="fechaFin">Fecha de termino</label>
-                    <input id="fechaFin" class="form-control mb-3" name = "fFin" type="date" min="2016-01-01" max="2022-06-30" pattern="\d{4}-\d{2}-\d{2}"/>
+                    <input id="fechaFin" class="form-control mb-5" name = "fFin" type="date" min="2016-01-01" max="2022-06-30" pattern="\d{4}-\d{2}-\d{2}"/>
                 </div>
             
 
                 <div class="d-grid gap-2 my-4">
-                    <button class="btn btn-primary d-grid shadow mx-3 mb-3" type="submit">Generar Mapa</button>
+                    <button class="btn btn-primary d-grid shadow mx-3 mb-2" type="submit">Generar Mapa</button>
                 </div>
 
             </form>
+
+            <div class="d-grid gap-2 my-4">
+                <a href=" {% url 'compMapas_app:compararMapas' %}" class="btn btn-primary d-grid shadow mx-3 mb-3" >Comparar Mapas</a>
+            </div>
+
 
         </div>
 
