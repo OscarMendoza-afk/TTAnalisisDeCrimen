@@ -65,7 +65,7 @@ def mapaC (request):
 
     df = pd.DataFrame(list(lista), columns=['delito','fecha', 'hora','categoria', 'colonia', 'alcaldia','longitud','latitud'])
 
-    with open('/home/ozkr/Documentos/AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
+    with open('/home/zaranda/Documentos/AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
 
     #print(poligonos)
 
@@ -116,7 +116,7 @@ def mapaC (request):
 
         df['Info'] = '<br>Delito:' + df['delito'].astype(str) + '<br>Fecha:' + df['fecha'].astype(str)
 
-        fig = px.density_mapbox(df, lon='longitud', lat='latitud',  radius=10,
+        fig = px.density_mapbox(df, lon='longitud', lat='latitud',  radius=5,
                         title="Mapa de calor de",
                         color_continuous_scale="inferno",
                         center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=9,                        
