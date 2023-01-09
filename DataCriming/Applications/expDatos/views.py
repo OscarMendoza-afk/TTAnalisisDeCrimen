@@ -14,7 +14,7 @@ from django.urls import reverse_lazy
 #importar pandas
 
 import pandas as pd
-
+import  numpy as np
 from pandas_profiling import ProfileReport
 
 class ExploratorioTemplateView(ListView):
@@ -67,6 +67,8 @@ def report (request):
     
     df['Fecha']= pd.to_datetime(df['Fecha'], format="%Y-%m-%d")
     df['Hora']= pd.to_datetime(df['Hora'], format="%H:%M:%S")
+
+    df["Edad"].replace({int(-1): np.nan}, inplace=True)
 
     print(df.dtypes)
 

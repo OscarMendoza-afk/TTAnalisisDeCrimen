@@ -65,44 +65,76 @@ def mapaC (request):
 
     df = pd.DataFrame(list(lista), columns=['delito','fecha', 'hora','categoria', 'colonia', 'alcaldia','longitud','latitud'])
 
-    with open('AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
 
     #print(poligonos)
 
     if mapa == '0': #Grfica de Coropletas
 
-        dfA=df["alcaldia"].value_counts()
+        if alcaldia == '':
+            
+            with open('AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
+            dfA=df["alcaldia"].value_counts()
+            dfA=dfA.to_frame()
 
-        dfA=dfA.to_frame()
+            dfA['index'] = dfA.index
+            dfA=dfA.reset_index()
+            dfA=dfA[['index','alcaldia']]
 
-        dfA['index'] = dfA.index
-        dfA=dfA.reset_index()
-        dfA=dfA[['index','alcaldia']]
+            dfA=dfA.rename(columns={'index' :'alcaldia', 'alcaldia' :'NumDelitos'})
+            #dfF=pd.merge(dfA, gdf, on='Alcaldia')
+            fig = px.choropleth(data_frame=dfA, 
+                            geojson=poligonos, 
+                            locations='alcaldia', # nombre de la columna del Dataframe
+                            featureidkey='properties.nomgeo',  # ruta al campo del archivo GeoJSON con el que se hará la relación (nombre de los estados)
+                            color='NumDelitos', #El color depende de las cantidades
+                            color_continuous_scale="blues",
+                            width=1000, 
+                            height=600
+                        )
+            fig.update_geos(showcountries=True, showcoastlines=True, showland=True, fitbounds="locations")
 
-        dfA=dfA.rename(columns={'index' :'alcaldia', 'alcaldia' :'NumDelitos'})
-
-        #dfF=pd.merge(dfA, gdf, on='Alcaldia')
-
-        fig = px.choropleth(data_frame=dfA, 
-                        geojson=poligonos, 
-                        locations='alcaldia', # nombre de la columna del Dataframe
-                        featureidkey='properties.nomgeo',  # ruta al campo del archivo GeoJSON con el que se hará la relación (nombre de los estados)
-                        color='NumDelitos', #El color depende de las cantidades
-                        color_continuous_scale="blues",
-                        width=1000, 
-                        height=600
-                    )
-        fig.update_geos(showcountries=True, showcoastlines=True, showland=True, fitbounds="locations")
-
-        fig.update_layout(
-            title_text = 'Mapa de Coropletas de Alcaldias más Delictivas',
-            font=dict(
-                #family="Courier New, monospace",
-                family="Ubuntu",
-                size=18,
-                color="#7f7f7f"
+            fig.update_layout(
+                title_text = 'Mapa de Coropletas de Alcaldias más Delictivas',
+                font=dict(
+                    #family="Courier New, monospace",
+                    family="Ubuntu",
+                    size=18,
+                    color="#7f7f7f"
+                )
             )
-        )
+        
+        if alcaldia != '':
+            with open('coloniasCDMX.json') as data_file:    poligonos= json.load(data_file) 
+            dfA=df["colonia"].value_counts()
+            dfA=dfA.to_frame()
+
+            dfA['index'] = dfA.index
+            dfA=dfA.reset_index()
+            dfA=dfA[['index','colonia']]
+
+            dfA=dfA.rename(columns={'index' :'colonia', 'colonia' :'NumDelitos'})
+            #dfF=pd.merge(dfA, gdf, on='Alcaldia')
+            fig = px.choropleth(data_frame=dfA, 
+                            geojson=poligonos, 
+                            locations='colonia', # nombre de la columna del Dataframe
+                            featureidkey='properties.nombre',  # ruta al campo del archivo GeoJSON con el que se hará la relación (nombre de los estados)
+                            color='NumDelitos', #El color depende de las cantidades
+                            color_continuous_scale="blues",
+                            width=1000, 
+                            height=600
+                        )
+            fig.update_geos(showcountries=True, showcoastlines=True, showland=True, fitbounds="locations")
+
+            fig.update_layout(
+                title_text = 'Mapa de Coropletas de Alcaldias más Delictivas',
+                font=dict(
+                    #family="Courier New, monospace",
+                    family="Ubuntu",
+                    size=18,
+                    color="#7f7f7f"
+                )
+            )
+
 
     elif mapa == '1': #Mapa de calor
 
