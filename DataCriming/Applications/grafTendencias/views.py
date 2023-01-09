@@ -111,7 +111,7 @@ def chart (request):
             dfFreq.columns = ['fecha', 'ocurrencia']
 
             if categoria == "" : categoria="todos los delitos"
-            if alcaldia == "" : alcaldia="todas los alcaldias"
+            if alcaldia == "" : alcaldia="todas las alcaldias"
             if sexo == "" : sexo="ambos"
             if fecha1 == "" : fecha1="todas"
             if fecha2 == "" : fecha2="todas"
