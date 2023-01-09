@@ -61,6 +61,7 @@ def chart (request):
         if fecha1 == '': fecha1 = '2021-01-01'
         if fecha2 == '': fecha2 = '2021-01-10'
 
+
         if grafica == '1':
 
             lista = Hechoscrimen.objects.filter(
@@ -75,7 +76,26 @@ def chart (request):
             dfFreq = df.groupby(['delito']).size().to_frame().reset_index()
             dfFreq.columns = ['delito', 'ocurrencia']
 
+            if categoria == "" : categoria="todos los delitos"
+            if alcaldia == "" : alcaldia="todas los alcaldias"
+            if sexo == "" : sexo="ambos"
+            if fecha1 == "" : fecha1="todas"
+            if fecha2 == "" : fecha2="todas"
+
+            etiqueta = "Grafica de tendencia de " + str(categoria) + " en " + str(alcaldia) + " y con sexo " + str(sexo) + " en un perido de tiendo de: " + str(fecha1) + " a " + str(fecha2)
+
+
             fig = px.pie(dfFreq, values='ocurrencia', names='delito')
+
+            fig.update_layout(
+            title_text = etiqueta,
+            font=dict(
+                family="Courier New, monospace",
+                #family="Ubuntu",
+                size=8,
+                color="#7f7f7f"
+            )
+            )
 
         else:
             lista = Hechoscrimen.objects.filter(
@@ -90,14 +110,54 @@ def chart (request):
             dfFreq = df.groupby(['fecha']).size().to_frame().reset_index()
             dfFreq.columns = ['fecha', 'ocurrencia']
 
+            if categoria == "" : categoria="todos los delitos"
+            if alcaldia == "" : alcaldia="todas los alcaldias"
+            if sexo == "" : sexo="ambos"
+            if fecha1 == "" : fecha1="todas"
+            if fecha2 == "" : fecha2="todas"
+
+            etiqueta = "Grafica de tendencia de " + str(categoria) + " en " + str(alcaldia) + " y con sexo " + str(sexo) + " en un perido de tiendo de: " + str(fecha1) + " a " + str(fecha2)
+
+
             if grafica == '0':
                 fig = px.line(dfFreq, x='fecha', y='ocurrencia', markers=True)
+
+                fig.update_layout(
+                title_text = etiqueta,
+                font=dict(
+                family="Courier New, monospace",
+                #family="Ubuntu",
+                size=8,
+                color="#7f7f7f"
+                 )
+                )
             
             elif grafica == '2':
                 fig = px.bar(dfFreq, x='fecha', y='ocurrencia')
 
+                fig.update_layout(
+                title_text = etiqueta,
+                font=dict(
+                family="Courier New, monospace",
+                #family="Ubuntu",
+                size=8,
+                color="#7f7f7f"
+                 )
+                )
+                
+
             elif grafica == '3':
                 fig = px.histogram(dfFreq, x='fecha', y='ocurrencia')
+
+                fig.update_layout(
+                title_text = etiqueta,
+                font=dict(
+                family="Courier New, monospace",
+                #family="Ubuntu",
+                size=8,
+                color="#7f7f7f"
+                 )
+                )
 
 
         fig.update_layout(autosize=True)

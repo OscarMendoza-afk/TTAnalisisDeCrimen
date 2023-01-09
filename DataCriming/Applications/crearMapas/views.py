@@ -101,15 +101,7 @@ def mapaC (request):
                 family="Ubuntu",
                 size=18,
                 color="#7f7f7f"
-            ),
-            annotations = [dict(
-                x=0.55,
-                y=-0.1,
-                xref='paper',
-                yref='paper',
-                text='Relizado con datos de: Portal de Datos Abiertos de la CDMX',
-                showarrow = False
-            )]
+            )
         )
 
     elif mapa == '1': #Mapa de calor
