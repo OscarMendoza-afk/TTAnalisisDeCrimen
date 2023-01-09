@@ -209,7 +209,25 @@ def CompMapa (request):
 
     elif mapa == '3': #puntos
 
-        print("DBscan")
+        dfm1['Info'] = '<br>Delito:' + dfm1['delito'].astype(str) + '<br>Fecha:' + dfm1['fecha'].astype(str)
+        dfm2['Info'] = '<br>Delito:' + dfm2['delito'].astype(str) + '<br>Fecha:' + dfm2['fecha'].astype(str)
+
+        fig=px.scatter_mapbox()
+
+        for i in dfm1:
+                fig.add_trace(px.scatter_mapbox(
+                    dfm1, lon='longitud', lat='latitud', hover_name="alcaldia", hover_data=["Info"],center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=10,
+                    color_discrete_sequence=["blue"], height=600
+                ))
+        
+        for i in dfm2:
+                fig.add_trace(px.scatter_mapbox(
+                    dfm2, lon='longitud', lat='latitud', hover_name="alcaldia", hover_data=["Info"],center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=10,
+                    color_discrete_sequence=["red"], height=600
+                ))
+
+        fig.update_layout(mapbox_style="open-street-map")
+        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
     elif mapa == '4': 
 
