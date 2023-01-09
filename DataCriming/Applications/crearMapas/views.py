@@ -13,8 +13,10 @@ from django.urls import reverse_lazy
 from dash import Dash, dcc, html, Input, Output
 import geopandas as gpd
 import pandas as pd
+import geopandas as gpd
 import plotly.express as px
 import json
+from sklearn.cluster import DBSCAN, MeanShift
 from django_plotly_dash import DjangoDash
 
 class CrearMapasTemplateView(ListView):
@@ -94,7 +96,7 @@ def mapaC (request):
             fig.update_geos(showcountries=True, showcoastlines=True, showland=True, fitbounds="locations")
 
             fig.update_layout(
-                title_text = 'Mapa de Coropletas de Alcaldias más Delictivas',
+                title_text = 'Mapa de Coropletas del Crimen en la CDMX',
                 font=dict(
                     #family="Courier New, monospace",
                     family="Ubuntu",
@@ -105,6 +107,7 @@ def mapaC (request):
         
         if alcaldia != '':
             with open('coloniasCDMX.json') as data_file:    poligonos= json.load(data_file) 
+
             dfA=df["colonia"].value_counts()
             dfA=dfA.to_frame()
 
@@ -126,7 +129,8 @@ def mapaC (request):
             fig.update_geos(showcountries=True, showcoastlines=True, showland=True, fitbounds="locations")
 
             fig.update_layout(
-                title_text = 'Mapa de Coropletas de Alcaldias más Delictivas',
+                mapbox_style="open-street-map",
+                title_text = 'Mapa de Coropletas del Crimen en la CDMX',
                 font=dict(
                     #family="Courier New, monospace",
                     family="Ubuntu",
@@ -134,7 +138,6 @@ def mapaC (request):
                     color="#7f7f7f"
                 )
             )
-
 
     elif mapa == '1': #Mapa de calor
 
@@ -160,17 +163,38 @@ def mapaC (request):
         fig.update_layout(mapbox_style="open-street-map")
         fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
-    elif mapa == '3': 
-   
-        fig = px.scatter_geo(df, locations="aldaldia", color="continent",
-                            hover_name="delito", size="pop",
-                            animation_frame="fecha",
-                            projection="natural earth")
+    elif mapa == '3':
+
+        df['Info'] = '<br>Delito:' + df['delito'].astype(str) + '<br>Fecha:' + df['fecha'].astype(str)
+
+        df['lon'] = df['longitud']*1000
+        df['lat'] = df['latitud']*1000
+
+        df['DBSCAN'] = DBSCAN(eps=8, min_samples=8).fit_predict(df[['lon', 'lat']])
+
+        print(df)
+
+        fig = px.scatter_mapbox(df, lon='longitud', lat='latitud', color='DBSCAN', hover_name="alcaldia", hover_data=["Info"],center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=10,
+                        color_discrete_sequence=["blue"], height=600)
+        fig.update_layout(mapbox_style="open-street-map")
+        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
         
 
     elif mapa == '4':
 
-        print("HotSpot1")
+        df['Info'] = '<br>Delito:' + df['delito'].astype(str) + '<br>Fecha:' + df['fecha'].astype(str)
+
+        df['lon'] = df['longitud']*100
+        df['lat'] = df['latitud']*100
+
+        df['MS'] = MeanShift().fit_predict(df[['lon', 'lat']])
+
+        print(df)
+
+        fig = px.scatter_mapbox(df, lon='longitud', lat='latitud', color='MS', hover_name="alcaldia", hover_data=["Info"],center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=10,
+                        color_discrete_sequence=["blue"], height=600)
+        fig.update_layout(mapbox_style="open-street-map")
+        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
 
     mapaC = fig.to_html()
