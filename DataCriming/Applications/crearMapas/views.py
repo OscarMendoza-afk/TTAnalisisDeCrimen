@@ -65,7 +65,7 @@ def mapaC (request):
 
     df = pd.DataFrame(list(lista), columns=['delito','fecha', 'hora','categoria', 'colonia', 'alcaldia','longitud','latitud'])
 
-    with open('/home/zaranda/Documentos/AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
+    with open('AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
 
     #print(poligonos)
 

@@ -60,33 +60,47 @@ def chart (request):
 
         if fecha1 == '': fecha1 = '2021-01-01'
         if fecha2 == '': fecha2 = '2021-01-10'
-        
-        lista = Hechoscrimen.objects.filter(
-            id_delito__categoria__icontains = categoria,
-            id_ubicacion__alcaldia__icontains = alcaldia,
-            id_persona__sexo__icontains = sexo,
-            id_fecha__fecha__range = (fecha1, fecha2)
-        ).values_list('id_delito__categoria', 'id_fecha__fecha')
 
-        df = pd.DataFrame(list(lista), columns=['categoria', 'fecha'])
+        if grafica == '1':
 
-        dfFreq = df.groupby(['fecha']).size().to_frame().reset_index()
-        dfFreq.columns = ['fecha', 'ocurrencia']
+            lista = Hechoscrimen.objects.filter(
+                id_delito__categoria__icontains = categoria,
+                id_ubicacion__alcaldia__icontains = alcaldia,
+                id_persona__sexo__icontains = sexo,
+                id_fecha__fecha__range = (fecha1, fecha2)
+            ).values_list('id_delito__delito', 'id_fecha__fecha')
 
-        print(dfFreq)
-        print(type(dfFreq))
+            df = pd.DataFrame(list(lista), columns=['delito', 'fecha'])
 
-        if grafica == '0':
-            fig = px.line(dfFreq, x='fecha', y='ocurrencia', markers=True)
-        
-        elif grafica == '1':
-            fig = px.pie(df, values='categoria', names='fecha')
+            dfFreq = df.groupby(['delito']).size().to_frame().reset_index()
+            dfFreq.columns = ['delito', 'ocurrencia']
 
-        elif grafica == '2':
-            fig = px.bar(dfFreq, x='fecha', y='ocurrencia')
+            fig = px.pie(dfFreq, values='ocurrencia', names='delito')
 
-        elif grafica == '3':
-            fig = px.histogram(dfFreq, x='fecha', y='ocurrencia')
+        else:
+            lista = Hechoscrimen.objects.filter(
+                id_delito__categoria__icontains = categoria,
+                id_ubicacion__alcaldia__icontains = alcaldia,
+                id_persona__sexo__icontains = sexo,
+                id_fecha__fecha__range = (fecha1, fecha2)
+            ).values_list('id_delito__categoria', 'id_fecha__fecha')
+
+            df = pd.DataFrame(list(lista), columns=['categoria', 'fecha'])
+
+            dfFreq = df.groupby(['fecha']).size().to_frame().reset_index()
+            dfFreq.columns = ['fecha', 'ocurrencia']
+
+            if grafica == '0':
+                fig = px.line(dfFreq, x='fecha', y='ocurrencia', markers=True)
+            
+            elif grafica == '2':
+                fig = px.bar(dfFreq, x='fecha', y='ocurrencia')
+
+            elif grafica == '3':
+                fig = px.histogram(dfFreq, x='fecha', y='ocurrencia')
+
+
+        fig.update_layout(autosize=True)
 
         chart = fig.to_html()
         context = {'chart': chart}

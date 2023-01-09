@@ -86,7 +86,7 @@ def CompMapa (request):
     dfm2 = pd.DataFrame(list(lista2), columns=['delito','fecha', 'hora','categoria', 'colonia', 'alcaldia','longitud','latitud'])
 
     
-    with open('/home/ozkr/Documentos/AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
+    with open('AlcaldiasshapeCDMX.json') as data_file:    poligonos= json.load(data_file) 
 
     locs=df['alcaldia']
     #print(poligonos)
