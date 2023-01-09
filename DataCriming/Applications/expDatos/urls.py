@@ -10,7 +10,7 @@ urlpatterns = [
     name='exploratorio'),
 
     path('Reporte',
-    views.FileExp ,
+    views.report ,
     name='report'),
 
 ]
