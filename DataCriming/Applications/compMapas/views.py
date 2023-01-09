@@ -15,6 +15,7 @@ import geopandas as gpd
 import pandas as pd
 import plotly.express as px
 import json
+from sklearn.cluster import DBSCAN, MeanShift
 from django_plotly_dash import DjangoDash
 import plotly.graph_objects as go
 
@@ -23,25 +24,7 @@ class CompararMapasTemplateView(ListView):
     context_object_name = "valores"
 
     def get_queryset(self):
-        """
-        mapa = self.request.GET.get('mapa', '')
-        categoria = self.request.GET.get('categoria', '')
-        alcaldia = self.request.GET.get('alcaldia', '')
-        sexo =    self.request.GET.get('sexo', '')
-        fecha1 = self.request.GET.get('fInicio', '')
-        fecha2 = self.request.GET.get('fFin', '')
-
-        if fecha1 == '': fecha1 = '2000-01-01'
-        if fecha2 == '': fecha2 = '2000-01-01'
         
-        lista = Hechoscrimen.objects.filter(
-            id_delito__categoria__icontains = categoria,
-            id_ubicacion__alcaldia__icontains = alcaldia,
-            id_persona__sexo__icontains = sexo,
-            id_fecha__fecha__range = (fecha1, fecha2)
-        )
-        return lista
-        """
         return []
 
 
@@ -91,181 +74,72 @@ def CompMapa (request):
     locs=df['alcaldia']
     #print(poligonos)
 
-    if mapa == '1': #Mapa calor
+    if mapa == '1': #Mapa de puntos
 
         dfm1['Info'] = '<br>Delito:' + dfm1['delito'].astype(str) + '<br>Fecha:' + dfm1['fecha'].astype(str)
+        dfm1['TP'] = 1
+        
+        dfm2['Info'] = '<br>Delito:' + dfm2['delito'].astype(str) + '<br>Fecha:' + dfm2['fecha'].astype(str)
+        dfm2['TP'] = 2
 
-        # Generamos la figura del mapa
-        fig = go.Figure()
-        # Recorremos los datos del archivo csv y extraemos sus coordenadas,
-        # etiquetas a mostrar y especificamos características del marcador
-        for i in dfm1:
-            fig.add_trace(go.Scattergeo(
-            lon = dfm1['longitud'],
-            lat = dfm1['latitud'],
-            text = dfm1['categoria'],
-            marker = dict(
-            color = 'Blue',
-            line_color='black',
-            line_width=0.3,
-            sizemode = 'area'
-        )))
+        df = pd.concat([dfm1, dfm2], axis=0)
+    
+        print(df)
 
-        for i in dfm2:
-            fig.add_trace(go.Scattergeo(
-            lon = dfm2['longitud'],
-            lat = dfm2['latitud'],
-            text = dfm2['categoria'],
-            marker = dict(
-            color = 'Red',
-            line_color='black',
-            line_width=0.3,
-            sizemode = 'area'
-        )))
-
-        fig.update_layout(
-
-            title_text = 'Población en las ciudades del mundo, año 2025',
-            mapbox_style="carto-positron",
-            showlegend = False,
-            autosize=True,
-            height=700,
-            geo=dict(
-            center=dict(
-            lon=-99.1374477062327,
-            lat=19.402765630374645),
-            projection_scale=300,
-            showsubunits = True,
-            showland = True,
-            showcountries = True
-            ))
+        fig = px.scatter_mapbox(df, lon='longitud', lat='latitud', color='TP', hover_name="alcaldia", hover_data=["Info"],center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=10,
+                        color_discrete_sequence=["blue"], height=600)
+        fig.update_layout(mapbox_style="open-street-map")
+        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
 
-    elif mapa == '2': #Mapa puntos
+    elif mapa == '2': #Mapa HS1
+        
+        dfm1['Info'] = '<br>Delito:' + dfm1['delito'].astype(str) + '<br>Fecha:' + dfm1['fecha'].astype(str)
+        dfm1['lon'] = dfm1['longitud']*1000
+        dfm1['lat'] = dfm1['latitud']*1000
+        dfm1['DBSCAN'] = DBSCAN(eps=8, min_samples=8).fit_predict(dfm1[['lon', 'lat']])
 
-            dfFreq = df.groupby(['delito']).size().to_frame().reset_index()
-            dfFreq.columns = ['delito', 'ocurrencia']
+        dfm1.loc[dfm1.DBSCAN >= 0, 'DBSCAN'] = 1
+        
+        dfm2['Info'] = '<br>Delito:' + dfm2['delito'].astype(str) + '<br>Fecha:' + dfm2['fecha'].astype(str)
+        dfm2['lon'] = dfm2['longitud']*1000
+        dfm2['lat'] = dfm2['latitud']*1000
+        dfm2['DBSCAN'] = DBSCAN(eps=8, min_samples=8).fit_predict(dfm2[['lon', 'lat']])
 
-            locs=df['alcaldia']
+        dfm2.loc[dfm2.DBSCAN >= 0, 'DBSCAN'] = 2
 
-            fig=go.Figure()
+        df = pd.concat([dfm1, dfm2], axis=0)
+    
+        print(df)
 
-
-            fig.add_trace(go.Choroplethmapbox(
-                                geojson=poligonos, 
-                                locations=locs, # nombre de la columna del Dataframe
-                                featureidkey='properties.nomgeo',
-                                z=dfFreq['ocurrencia'],
-                                colorscale='blues'))
-
-            for i in dfm1:
-                fig.add_trace(go.Scattergeo(
-                lon = dfm1['longitud'],
-                lat = dfm1['latitud'],
-                text = dfm1['categoria'],
-                marker = dict(
-                color = 'Blue',
-                line_color='black',
-                line_width=0.3,
-                sizemode = 'area'
-                )))
-
-            for i in dfm2:
-                fig.add_trace(go.Scattergeo(
-                lon = dfm2['longitud'],
-                lat = dfm2['latitud'],
-                text = dfm2['categoria'],
-                marker = dict(
-                color = 'Red',
-                line_color='black',
-                line_width=0.3,
-                sizemode = 'area'
-                )))
-
-            """
-            fig.update_layout(
-
-            title_text = 'Población en las ciudades del mundo, año 2025',
-            mapbox_style="carto-positron",
-            showlegend = False,
-            autosize=True,
-            height=700,
-            geo=dict(
-            center=dict(
-            lon=-99.1374477062327,
-            lat=19.402765630374645),
-            projection_scale=300,
-            showsubunits = True,
-            showland = True,
-            showcountries = True
-            ))
-            """
-
-            
-            fig.update_layout(mapbox_style="carto-positron",
-                                    mapbox_zoom=3.4,
-                                    mapbox_center = {"lat": 19.402765630374645, "lon": -99.1374477062327})
+        fig = px.scatter_mapbox(df, lon='longitud', lat='latitud', color='DBSCAN', hover_name="alcaldia", hover_data=["Info"],center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=10,
+                        color_discrete_sequence=["blue"], height=600)
+        fig.update_layout(mapbox_style="open-street-map")
+        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
             
 
     elif mapa == '3': #puntos
 
         dfm1['Info'] = '<br>Delito:' + dfm1['delito'].astype(str) + '<br>Fecha:' + dfm1['fecha'].astype(str)
-        dfm2['Info'] = '<br>Delito:' + dfm2['delito'].astype(str) + '<br>Fecha:' + dfm2['fecha'].astype(str)
+        dfm1['lon'] = dfm1['longitud']*1000
+        dfm1['lat'] = dfm1['latitud']*1000
+        dfm1['MS'] = MeanShift().fit_predict(dfm1[['lon', 'lat']])
 
-        fig=px.scatter_mapbox()
-
-        for i in dfm1:
-                fig.add_trace(px.scatter_mapbox(
-                    dfm1, lon='longitud', lat='latitud', hover_name="alcaldia", hover_data=["Info"],center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=10,
-                    color_discrete_sequence=["blue"], height=600
-                ))
+        dfm1.loc[dfm1.MS >= 0, 'MS'] = 1
         
-        for i in dfm2:
-                fig.add_trace(px.scatter_mapbox(
-                    dfm2, lon='longitud', lat='latitud', hover_name="alcaldia", hover_data=["Info"],center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=10,
-                    color_discrete_sequence=["red"], height=600
-                ))
+        dfm2['Info'] = '<br>Delito:' + dfm2['delito'].astype(str) + '<br>Fecha:' + dfm2['fecha'].astype(str)
+        dfm2['lon'] = dfm2['longitud']*1000
+        dfm2['lat'] = dfm2['latitud']*1000
+        dfm2['MS'] = MeanShift().fit_predict(dfm2[['lon', 'lat']])
 
+        dfm2.loc[dfm2.MS >= 0, 'MS'] = 2
+
+        df = pd.concat([dfm1, dfm2], axis=0)
+
+        fig = px.scatter_mapbox(df, lon='longitud', lat='latitud', color='MS', hover_name="alcaldia", hover_data=["Info"],center=dict(lon=-99.1374477062327, lat=19.402765630374645), zoom=10,
+                        color_discrete_sequence=["blue"], height=600)
         fig.update_layout(mapbox_style="open-street-map")
         fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-
-    elif mapa == '4': 
-
-        app = DjangoDash('hotspotuno')
-
-
-        layout= app.layout = html.Div([
-            html.H4("Interactive color mode option with Dash"),
-            html.P("Color mode:"),
-            dcc.RadioItems(
-                id='discrete-color-x-color-mode', 
-                value='capa', 
-                options=['discrete', 'continuous'],
-            ),
-            dcc.Graph(id="discrete-color-x-graph"),
-        ])
-
-
-        @app.callback(
-            Output("discrete-color-x-graph", "figure"), 
-            Input("discrete-color-x-color-mode", "value"))
-
-
-        def generate_chart(mode):
-            if mode == 'discrete':
-                x=[1, 2, 3, 4] 
-                y=[1, 4, 9, 16]
-            else:
-                x=[1, 2, 5, 4] 
-                y=[1, 6, 10, 16]
-
-            fig = px.line(x, y, title=r'$\alpha_{1c} = 352 \pm 11 \text{ km s}^{-1}$')
-            
-            return {'data': [fig], 'layout': layout}
-
-        
-
-        print("HotSpot1")
 
 
     mapaC = fig.to_html()
